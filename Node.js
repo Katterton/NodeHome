@@ -1,35 +1,45 @@
-const config = {
+const UDPled = require("./UDPled.js")
+const UDPLED = {
     input: [
-        {name:"testIn", type : "number", id:0}
+        {name:"Color", type : "ledArray", id:0, var: "data"}
     ],
     output: [
-        {name:"testOut", type : "number", id:0}
+        //{name:"WIP Status", type : "number", id:0}
     ],
     args: [
-        {name:"testArg", type : "number", value:5}
-    ]
+        {name:"IP",var: "ip", type : "String", value:"182.168.1.100"},
+        {name:"Port", var:"port", type : "number", value:80},
+        {name:"numLeds", var: "num_Leds", type : "number", value: 90}
+    ],
+    func : UDPled
 }
 
 
 
 
 class Node{
+
     input = []
     output = []
     args = []
-    func = ()=>(console.log(this.input[0].data));
+    func = (node)=>(console.log(node.input[0].data));
     constructor(input, output ,args,func)
     {
     for(let i of input ){
         this.input.push(new Input(i, this))
     }
         for(let i of output ){
+
             this.output.push(new Output(i,this))
+
         }
         for(let i of args){
+            this[i.var]=i.value
             this.args.push(new Arguement(i))
+
         }
-        this.func = func
+
+        this.func = new func()
 
 
     }
@@ -44,7 +54,7 @@ class Arguement{
         this.name= arg.name
         this.type= arg.type
         this.value = arg.value
-
+        this.var = arg.var
 
     }
 
@@ -58,6 +68,7 @@ class IO{
     data
     constructor(io, node) {
         this.name=io.name
+        this.var = io.var
         this.id = io.id
         this.type = io.type
         this.node =node
@@ -82,7 +93,8 @@ class Input extends IO {
 
     update(data) {
         this.data = data
-        this.node.func()
+        this.node[this.var]=data
+        this.node.func.update(this.node)
 
     }
 }
@@ -104,9 +116,9 @@ class Output extends IO{
     }
 
 }
-let test1 = new Node(config.input, config.output, config.args, ()=>2)
-let test2 = new Node(config.input, config.output, config.args, ()=>2)
-test1.input[0].subscribe(test2.output[0])
-test2.output[0].update(123)
+let test1 = new Node(UDPLED.input, UDPLED.output, UDPLED.args, UDPLED.func)
+
+//test1.input[0].subscribe(test2.output[0])
+//test2.output[0].update(123)
 console.log(test1)
 
