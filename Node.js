@@ -1,4 +1,5 @@
 const UDPled = require("./UDPled.js")
+const Ambi = require("./Ambi.js")
 const UDPLED = {
     input: [
         {name:"Color", type : "ledArray", id:0, var: "data"}
@@ -14,7 +15,20 @@ const UDPLED = {
     func : UDPled
 }
 
+const AMBI = {
+    input: [
 
+    ],
+    output: [
+        {name:"Color", type : "ledArray", id:0}
+    ],
+    args: [
+        {name:"Screen",var: "screen", type : "number", value:0},
+        {name:"FPS", var:"fps", type : "number", value:50},
+        {name:"numLeds", var: "num_Leds", type : "number", value: 90}
+    ],
+    func : Ambi
+}
 
 
 class Node{
