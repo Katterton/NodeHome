@@ -17,7 +17,7 @@ class Node{
     input = []
     output = []
     args = []
-    func = ()=>(1);
+    func = ()=>(console.log(this.input[0].data));
     constructor(input, output ,args,func)
     {
     for(let i of input ){
@@ -67,8 +67,8 @@ class IO{
 
 class Input extends IO {
     output
-    constructor(input) {
-        super(input);
+    constructor(input, node) {
+        super(input,node);
         this.io = "input"
     }
 
@@ -89,8 +89,8 @@ class Input extends IO {
 class Output extends IO{
  inputs = []
 
-    constructor(output) {
-        super(output);
+    constructor(output, node) {
+        super(output, node);
         this.io="output"
     }
     on(input){
@@ -104,6 +104,9 @@ class Output extends IO{
     }
 
 }
-let test = new Node(config.input, config.output, config.args, ()=>2)
-console.log(test)
+let test1 = new Node(config.input, config.output, config.args, ()=>2)
+let test2 = new Node(config.input, config.output, config.args, ()=>2)
+test1.input[0].subscribe(test2.output[0])
+test2.output[0].update(123)
+console.log(test1)
 
