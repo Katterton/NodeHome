@@ -3,7 +3,58 @@ const app = express();
 const http = require('http');
 const server = http.createServer(app);
 const { Server } = require("socket.io");
-const io = new Server(server);
-app.get('/', (req, res) => {  res.sendFile(__dirname + '/index.html');});
-io.on('connection', (socket) => {  console.log('a user connected');});
-server.listen(3000, () => {  console.log('listening on *:3000');});
+
+
+
+
+
+
+
+
+function SocketApi(HTMLNodeGen) {
+    this.nodeManager={}
+
+    const io = new Server(server);
+    app.use(express.static('public'));
+    app.get('/', (req, res) => {
+        res.sendFile(__dirname + '/index.html');
+    });
+    io.on('connection', (socket) => {
+        //add new Node
+        socket.on("addNode",(msg)=>{
+            this.nodeManager.addNode(msg)
+        })
+        socket.on("NodePositionChange",(msg)=>{
+            this.nodeManager.nodes[msg.id].x=msg.x
+            this.nodeManager.nodes[msg.id].y=msg.y
+            console.log(this.nodeManager.nodes[msg.id].x)
+            io.emit("NodePositionChange",msg)
+        })
+        socket.on("ArgChange",(msg)=>{
+
+            this.nodeManager.nodes[msg.id].args.find(x=>x.var===msg.ioid).value=msg.value
+            io.emit("ArgChange",msg)
+        })
+        socket.emit("test", "test")
+
+
+        console.log('a user connected');
+    });
+
+    this.update=function(){
+        let out = []
+        for(let key in this.nodeManager.nodes){
+            out.push({html:HTMLNodeGen(this.nodeManager.nodes[key]), id :key})
+        }
+        io.emit("update", out)
+    }
+
+
+
+
+    server.listen(3000, () => {
+        console.log('listening on *:3000');
+    });
+    return this
+}
+module.exports=SocketApi

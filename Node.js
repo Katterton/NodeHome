@@ -36,7 +36,8 @@ const AMBI = {
 
 
 class Node{
-
+x=0
+    y=0
     input = []
     output = []
     args = []
@@ -137,11 +138,12 @@ class Output extends IO{
     }
 
 }
-let test1 = new Node(UDPLED.name,UDPLED.input, UDPLED.output, UDPLED.args, UDPLED.func)
-let test2 = new Node(AMBI.name,AMBI.input, AMBI.output, AMBI.args, AMBI.func)
-test1.input[0].subscribe(test2.output[0])
-test2.func.start()
-console.log(parseHTML(test1))
+module.exports=Node
+//let test1 = new Node(UDPLED.name,UDPLED.input, UDPLED.output, UDPLED.args, UDPLED.func)
+//let test2 = new Node(AMBI.name,AMBI.input, AMBI.output, AMBI.args, AMBI.func)
+//test1.input[0].subscribe(test2.output[0])
+//test2.func.start()
+//console.log(parseHTML(test1))
 //test2.output[0].update(123)
 //console.log(test1,test2)
 

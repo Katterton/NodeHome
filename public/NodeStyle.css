@@ -1,0 +1,36 @@
+.node {
+
+    position: absolute;
+}
+
+.input{
+    margin-top: 10px;
+    position: absolute;
+    left: -10px;
+    width:50%;
+
+
+}
+.output{
+    margin-top: 10px;
+    position: absolute;
+    right: -10px;
+    width:50%;
+
+
+}
+html{
+    position: relative;
+}
+.container{
+    height: 30px;
+}
+.insvg{
+    float:left;
+}
+.intext{
+    margin-top: -2px;
+}
+.outtext{
+    margin-top: -2px;
+}
