@@ -8,17 +8,31 @@
     <title>Title</title>
 </head>
 <body id="a">
-
+<div id="add"></div>
+<div id = "Nodes"></div>
 </body>
 </html>
 <script src="/socket.io/socket.io.js"></script>
 <script>
-    var check=false;
+    var check=false;1
     var counter = 0
     var socket = io();
-    socket.on('test', function(msg) {
-        socket.emit("addNode",{name:"UDPLED"})
+    var config = {}
 
+    socket.on('setConfig', function(msg) {
+       config=msg
+        console.log(config)
+        let ele = document.getElementById("add")
+        ele.innerHTML=""
+        for (let c in config){
+            //pls improve me
+            ele.innerHTML+="<button id='add"+config[c].name+"'>Add "+config[c].name+"</button>"
+        }
+        for (let c in config){
+            document.getElementById("add"+config[c].name).addEventListener("click",()=>{
+                socket.emit("addNode",{name:c})
+            })
+        }
     });
     socket.on('ArgChange', function(msg) {
         let a =document.getElementById(msg.id).children[0].children
@@ -37,10 +51,10 @@
     });
     socket.on('update', function(msg) {
         console.log(msg)
-        document.getElementById("a").innerHTML = ""
+        document.getElementById("Nodes").innerHTML = ""
 
         for(let node of msg) {
-            document.getElementById("a").innerHTML +=node.html
+            document.getElementById("Nodes").innerHTML +=node.html
 
         }
         for(let node of msg) {

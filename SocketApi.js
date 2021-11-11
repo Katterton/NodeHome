@@ -21,9 +21,14 @@ function SocketApi(HTMLNodeGen) {
     });
     io.on('connection', (socket) => {
         //add new Node
+        socket.emit("setConfig", this.nodeManager.getConfig())
+this.update()
+
+
         socket.on("addNode",(msg)=>{
             this.nodeManager.addNode(msg)
         })
+
         socket.on("NodePositionChange",(msg)=>{
             this.nodeManager.nodes[msg.id].x=msg.x
             this.nodeManager.nodes[msg.id].y=msg.y
@@ -35,8 +40,6 @@ function SocketApi(HTMLNodeGen) {
             this.nodeManager.nodes[msg.id].args.find(x=>x.var===msg.ioid).value=msg.value
             io.emit("ArgChange",msg)
         })
-        socket.emit("test", "test")
-
 
         console.log('a user connected');
     });

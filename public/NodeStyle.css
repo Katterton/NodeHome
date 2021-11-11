@@ -14,7 +14,7 @@
 .output{
     margin-top: 10px;
     position: absolute;
-    right: -10px;
+    left: 238px;
     width:50%;
 
 
@@ -31,6 +31,7 @@ html{
 .intext{
     margin-top: -2px;
 }
-.outtext{
-    margin-top: -2px;
+.outText{
+
+    float: left;
 }

@@ -17,8 +17,8 @@ function parseHTML(node){
     out+=' </div><div class="col-sm">'
     for(let output of node.output){
 
-        out+='  <p class="outText">'+output.name+'</p><svg class="outsvg" id="svg'+node.id+output.name+'" width="22" height="22">'
-        out+="<circle class='output' id='"+node.id+output.name+"' 'cx='6' cy='6' r='5' stroke='black', fill='white></svg>"
+        out+='  <div class="output"><p class="outText">'+output.name+'</p><svg class="outsvg" id="svg'+node.id+output.name+'" width="22" height="22">'
+        out+="<circle class='out' id='"+node.id+output.name+"'  cx='10'  cy='10' r='6' stroke='black'  fill='white'></svg></div>"
     }
 
     out +='</div></div></div></div></div>'

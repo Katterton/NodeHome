@@ -52,13 +52,16 @@ class NodeManager{
     }
     addNode(msg){
         let conf = NODECONFIG[msg.name]
-        this.nodes[this.idc+conf.name]= new Node(conf.name,conf.input, conf.output, conf.args, conf.func)
+        this.nodes[this.idc+conf.name]= new Node(conf.name, conf.input, conf.output, conf.args, conf.func)
         this.nodes[this.idc+conf.name].id=this.idc
         this.socketApi.update()
         this.idc++
     }
     deleteNode(){
 
+    }
+    getConfig(){
+        return NODECONFIG
     }
 
 
