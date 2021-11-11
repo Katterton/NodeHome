@@ -10,7 +10,7 @@ class Ambi{
 
     start(){
         if(this.dd===undefined) {
-            this.dd = new DesktopDuplication(this.display);
+            this.dd = new DesktopDuplication(this.node.display);
 
             try {
                 this.dd.initialize();
@@ -20,14 +20,14 @@ class Ambi{
             }
 
             this.dd.on("frame", frame => {
-                console.log(this.connected)
+
                 const width = Math.floor(frame.width / this.node.num_panel)
                 this.extract_panel_col(frame, width).then(async (col) => {
 
 
 
 
-                            con.update(chroma.scale(col).mode('lrgb').domain([0, con.num_leds]));
+                            this.node.output[0].update(chroma.scale(col).mode('lrgb').domain([0, 100]));
 
 
 
@@ -52,7 +52,7 @@ class Ambi{
             let col = []
             let j = 0;
 
-            for (let i = 0; i < this.num_panel; i++) {
+            for (let i = 0; i < this.node.num_panel; i++) {
 
                 sharp(frame.data, {
                     // because the input does not contain its dimensions or how many channels it has
@@ -78,7 +78,7 @@ class Ambi{
                     ++j;
 
 
-                    if (j === this.num_panel) {
+                    if (j === this.node.num_panel) {
 
                         resolve(col)
                     }

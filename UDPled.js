@@ -6,8 +6,8 @@ const chroma = require("chroma-js")
 
 class Udp  {
 
-    constructor(){
-
+    constructor(node){
+this.node=node
 
         this.client = dgram.createSocket('udp4');
 

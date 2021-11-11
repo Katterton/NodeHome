@@ -1,5 +1,5 @@
 const UDPled = require("./UDPled.js")
-const Ambi = require("./Ambi.js")
+const Ambi = require("./ambi.js")
 const UDPLED = {
     input: [
         {name:"Color", type : "ledArray", id:0, var: "data"}
@@ -10,7 +10,7 @@ const UDPLED = {
     args: [
         {name:"IP",var: "ip", type : "String", value:"182.168.1.100"},
         {name:"Port", var:"port", type : "number", value:80},
-        {name:"numLeds", var: "num_Leds", type : "number", value: 90}
+        {name:"numLeds", var: "num_leds", type : "number", value: 90}
     ],
     func : UDPled
 }
@@ -23,9 +23,9 @@ const AMBI = {
         {name:"Color", type : "ledArray", id:0}
     ],
     args: [
-        {name:"Screen",var: "screen", type : "number", value:0},
-        {name:"FPS", var:"fps", type : "number", value:50},
-        {name:"numLeds", var: "num_Leds", type : "number", value: 90}
+        {name:"Screen",var: "display", type : "number", value:1},
+        {name:"FPS", var:"fps", type : "number", value:20},
+        {name:"numPanel", var: "num_panel", type : "number", value: 90}
     ],
     func : Ambi
 }
@@ -53,7 +53,7 @@ class Node{
 
         }
 
-        this.func = new func()
+        this.func = new func(this)
 
 
     }
@@ -131,8 +131,9 @@ class Output extends IO{
 
 }
 let test1 = new Node(UDPLED.input, UDPLED.output, UDPLED.args, UDPLED.func)
-
-//test1.input[0].subscribe(test2.output[0])
+let test2 = new Node(AMBI.input, AMBI.output, AMBI.args, AMBI.func)
+test1.input[0].subscribe(test2.output[0])
+test2.func.start()
 //test2.output[0].update(123)
-console.log(test1)
+console.log(test1,test2)
 
