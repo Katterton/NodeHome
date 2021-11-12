@@ -28,7 +28,9 @@ this.update()
         socket.on("addNode",(msg)=>{
             this.nodeManager.addNode(msg)
         })
-
+socket.on("connectNodes",(msg)=>{
+            nodeManager.addConnection(msg)
+        })
         socket.on("NodePositionChange",(msg)=>{
             this.nodeManager.nodes[msg.id].x=msg.x
             this.nodeManager.nodes[msg.id].y=msg.y
@@ -43,6 +45,11 @@ this.update()
 
         console.log('a user connected');
     });
+
+    this.addConnection=function(cons){
+        io.emit("connectNodes",cons)
+    }
+
 
     this.update=function(){
         let out = []

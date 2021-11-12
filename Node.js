@@ -106,6 +106,7 @@ class Input extends IO {
     }
 
     subscribe(output) {
+
         if (output.io === "output") {
 
             output.on(this)

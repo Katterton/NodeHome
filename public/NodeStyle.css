@@ -1,8 +1,17 @@
 .node {
-
+    background: #313131;
     position: absolute;
+    color: #ffffff;
 }
-
+span{
+    background: #313131 !important;
+    border: none !important;
+    color: #ffffff !important;
+}
+input{
+    background: #5f5f5f !important;
+    border: none !important;
+    color: #ffffff !important;}
 .input{
     margin-top: 10px;
     position: absolute;
@@ -19,8 +28,12 @@
 
 
 }
+body{
+    background: #5f5f5f;
+}
 html{
     position: relative;
+
 }
 .container{
     height: 30px;

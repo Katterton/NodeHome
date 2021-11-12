@@ -14,6 +14,7 @@ this.node=node
     }
     update() {
         this.msg_parse(this.node.data).then(async (msg) => {
+            console.log(Buffer.from(msg), this.node.port, this.node.ip)
         this.client.send(Buffer.from(msg), this.node.port, this.node.ip)
     })
     }

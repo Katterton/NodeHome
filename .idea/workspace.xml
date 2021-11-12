@@ -2,11 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9bbbc3f1-e508-447f-af69-3bce1e16fa80" name="Changes" comment="somewhat functioning socketApi">
+      <change afterPath="$PROJECT_DIR$/Beat.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HTMLNodeGen.js" beforeDir="false" afterPath="$PROJECT_DIR$/HTMLNodeGen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Node.js" beforeDir="false" afterPath="$PROJECT_DIR$/Node.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SocketApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/SocketApi.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UDPled.js" beforeDir="false" afterPath="$PROJECT_DIR$/UDPled.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/nodeManager.js" beforeDir="false" afterPath="$PROJECT_DIR$/nodeManager.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/NodeStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/NodeStyle.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -18,8 +22,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="HTML File" />
-        <option value="JavaScript File" />
         <option value="CSS File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -40,11 +44,11 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="javascript.nodejs.core.library.configured.version" value="16.9.1" />
+    <property name="javascript.nodejs.core.library.configured.version" value="12.22.3" />
     <property name="javascript.nodejs.core.library.typings.version" value="16.9.1" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/Node.js" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
-    <property name="nodejs_interpreter_path" value="$USER_HOME$/.nvm/versions/node/v16.9.1/bin/node" />
+    <property name="nodejs_interpreter_path" value="node" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -82,6 +86,7 @@
       <option name="presentableId" value="Default" />
       <updated>1636551702111</updated>
       <workItem from="1636551704711" duration="5563000" />
+      <workItem from="1636716875890" duration="9915000" />
     </task>
     <task id="LOCAL-00001" summary="1. commit">
       <created>1636559012550</created>
@@ -104,11 +109,18 @@
       <option name="project" value="LOCAL" />
       <updated>1636643775815</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="somewhat functioning socketApi">
+      <created>1636652006087</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1636652006087</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="3" />
+    <option name="version" value="2" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -144,34 +156,34 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="736" y="356" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.2560.1400/-1920.328.1920.1040@0.0.2560.1400" timestamp="1636630842217" />
-    <state x="910" y="269" key="CommitChangelistDialog2" timestamp="1636643774957">
+    <state x="910" y="269" key="CommitChangelistDialog2" timestamp="1636652005391">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="910" y="269" key="CommitChangelistDialog2/0.0.2560.1400/-1920.328.1920.1040@0.0.2560.1400" timestamp="1636643774957" />
-    <state width="2539" height="389" key="GridCell.Tab.0.bottom" timestamp="1636650499725">
+    <state x="910" y="269" key="CommitChangelistDialog2/0.0.2560.1400/-1920.328.1920.1040@0.0.2560.1400" timestamp="1636652005391" />
+    <state width="2539" height="400" key="GridCell.Tab.0.bottom" timestamp="1636726623019">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2539" height="389" key="GridCell.Tab.0.bottom/0.0.2560.1400/-1920.328.1920.1040@0.0.2560.1400" timestamp="1636650499725" />
-    <state width="2539" height="389" key="GridCell.Tab.0.center" timestamp="1636650499724">
+    <state width="2539" height="400" key="GridCell.Tab.0.bottom/0.0.2560.1400/-1920.328.1920.1040@0.0.2560.1400" timestamp="1636726623019" />
+    <state width="2539" height="400" key="GridCell.Tab.0.center" timestamp="1636726623018">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2539" height="389" key="GridCell.Tab.0.center/0.0.2560.1400/-1920.328.1920.1040@0.0.2560.1400" timestamp="1636650499724" />
-    <state width="2539" height="389" key="GridCell.Tab.0.left" timestamp="1636650499724">
+    <state width="2539" height="400" key="GridCell.Tab.0.center/0.0.2560.1400/-1920.328.1920.1040@0.0.2560.1400" timestamp="1636726623018" />
+    <state width="2539" height="400" key="GridCell.Tab.0.left" timestamp="1636726623017">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2539" height="389" key="GridCell.Tab.0.left/0.0.2560.1400/-1920.328.1920.1040@0.0.2560.1400" timestamp="1636650499724" />
-    <state width="2539" height="389" key="GridCell.Tab.0.right" timestamp="1636650499725">
+    <state width="2539" height="400" key="GridCell.Tab.0.left/0.0.2560.1400/-1920.328.1920.1040@0.0.2560.1400" timestamp="1636726623017" />
+    <state width="2539" height="400" key="GridCell.Tab.0.right" timestamp="1636726623018">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2539" height="389" key="GridCell.Tab.0.right/0.0.2560.1400/-1920.328.1920.1040@0.0.2560.1400" timestamp="1636650499725" />
-    <state x="873" y="434" key="Vcs.Push.Dialog.v2" timestamp="1636643785929">
+    <state width="2539" height="400" key="GridCell.Tab.0.right/0.0.2560.1400/-1920.328.1920.1040@0.0.2560.1400" timestamp="1636726623018" />
+    <state x="873" y="434" key="Vcs.Push.Dialog.v2" timestamp="1636652008255">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="873" y="434" key="Vcs.Push.Dialog.v2/0.0.2560.1400/-1920.328.1920.1040@0.0.2560.1400" timestamp="1636643785929" />
-    <state x="1090" y="615" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1636643727101">
+    <state x="873" y="434" key="Vcs.Push.Dialog.v2/0.0.2560.1400/-1920.328.1920.1040@0.0.2560.1400" timestamp="1636652008255" />
+    <state x="1090" y="615" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1636718418286">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="1090" y="615" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.2560.1400/-1920.328.1920.1040@0.0.2560.1400" timestamp="1636643727101" />
+    <state x="1090" y="615" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.2560.1400/-1920.328.1920.1040@0.0.2560.1400" timestamp="1636718418286" />
     <state x="943" y="315" width="672" height="678" key="search.everywhere.popup" timestamp="1636649357695">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>

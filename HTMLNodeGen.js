@@ -3,7 +3,7 @@ function parseHTML(node){
     for(let arg of node.args){
 
 
-                out+='<span class="input-group-text" id="'+node.id+arg.var+'a">'+arg.name+'</span> <input  type="'+arg.type+'" class="form-control '+arg.var+'" placeholder="'+arg.value+'" aria-label="'+arg.name+'" aria-describedby="'+node.id+arg.name+'a">'
+                out+='<span class="input-group-text" id="'+node.id+arg.var+'a">'+arg.name+'</span> <input  type="'+arg.type+'" class="form-control '+arg.var+'" value="'+arg.value+'" aria-label="'+arg.name+'" aria-describedby="'+node.id+arg.name+'a">'
 
 
     }
