@@ -68,6 +68,7 @@
         for(let node of msg) {
              makeDraggable(document.getElementById(node.id))
             addArgListener(document.getElementById(node.id))
+            addStartListener(document.getElementById(node.id))
 
             let io = document.getElementById(node.id).children[0].children[document.getElementById(node.id).children[0].children.length-1].children
             console.log(io)
@@ -97,6 +98,16 @@ let a = ele.children[0].children
         }
     }
 
+
+    function addStartListener(ele){
+        if(document.getElementById(ele.id+"start")) {
+            document.getElementById(ele.id+"start").addEventListener("click", function () {
+                socket.emit("startNode",{id:ele.id})
+            })
+        }
+    }
+
+
     function makeDraggable(ele){
 
 
@@ -106,7 +117,7 @@ let a = ele.children[0].children
             function dragMouseDown(e) {
 
 
-                if(e.target.localName!=="input" && e.target.localName!=="circle" &&  e.target.localName!=="svg") {
+                if(e.target.localName!=="input" && e.target.localName!=="circle" &&  e.target.localName!=="svg" &&  e.target.localName!=="button" ) {
                     e = e || window.event;
                 e.preventDefault();
                 ele._pos.pos3 =e.clientX;

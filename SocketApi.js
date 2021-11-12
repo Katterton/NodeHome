@@ -24,7 +24,9 @@ function SocketApi(HTMLNodeGen) {
         socket.emit("setConfig", this.nodeManager.getConfig())
 this.update()
 
-
+socket.on("startNode", (msg)=>{
+    this.nodeManager.startNode(msg.id)
+})
         socket.on("addNode",(msg)=>{
             this.nodeManager.addNode(msg)
         })
@@ -38,8 +40,8 @@ socket.on("connectNodes",(msg)=>{
             io.emit("NodePositionChange",msg)
         })
         socket.on("ArgChange",(msg)=>{
-
-            this.nodeManager.nodes[msg.id].args.find(x=>x.var===msg.ioid).value=msg.value
+console.log(this.nodeManager.nodes[msg.id].args.find(x=>x.var===msg.ioid),this.nodeManager.nodes[msg.id])
+            this.nodeManager.nodes[msg.id].args.find(x=>x.var===msg.ioid).update(msg.value)
             io.emit("ArgChange",msg)
         })
 
@@ -57,6 +59,7 @@ socket.on("connectNodes",(msg)=>{
             out.push({html:HTMLNodeGen(this.nodeManager.nodes[key]), id :key})
         }
         io.emit("update", out)
+        this.addConnection(this.nodeManager.connections)
     }
 
 

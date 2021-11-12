@@ -1,3 +1,7 @@
+.st{
+    margin-top: -10px;
+}
+
 .node {
     background: #313131;
     position: absolute;
@@ -14,6 +18,7 @@ input{
     color: #ffffff !important;}
 .input{
     margin-top: 10px;
+    margin-bottom: 1000px;
     position: absolute;
     left: -10px;
     width:50%;
@@ -36,7 +41,8 @@ html{
 
 }
 .container{
-    height: 30px;
+    margin-top: 10px;
+    height: 50px;
 }
 .insvg{
     float:left;

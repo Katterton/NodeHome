@@ -2,14 +2,14 @@ var Node = require("./Node.js")
 const UDPled = require("./UDPled.js")
 const Ambi = require("./ambi.js")
 const Beat = require("./Beat.js")
+const BeatMixer = require("./BeatMixer.js")
 
-
-
+const StaticLedColor = require("./StaticLedColor")
 
 const NODECONFIG = {    UDPLED : {
         name: "UDPLed",
         input: [
-            {name:"Color", type : "ledArray", id:0, var: "data"}
+            {name:"Color", type : "ChromaScale", id:0, var: "data"}
         ],
         output: [
             //{name:"WIP Status", type : "number", id:0}
@@ -31,10 +31,26 @@ const NODECONFIG = {    UDPLED : {
             //{name:"WIP Status", type : "number", id:0}
         ],
         args: [
-            {name:"Audio Device", var:"audio", type : "number", value:10},
-            {name:"Sensitivity", var: "sensi", type : "number", value: 10}
+            {name:"AudioDevice", var:"audio_device", type : "number", value:10},
+            {name:"Sensitivity", var: "sensitivity", type : "number", value: 10}
         ],
         func : Beat
+    },
+    BEATMIXER : {
+        name: "BeatMixer",
+        input: [
+            {name:"Color", type : "ChromaScale", id:0, var: "data"},
+            {name:"beat", type : "number", id:1, var: "beat"}
+        ],
+        output: [
+            {name:"Color", type : "ChromaScale", id:0}
+            //{name:"WIP Status", type : "number", id:0}
+        ],
+        args: [
+            {name:"Factor", var:"fac", type : "number", value:10},
+
+        ],
+        func : BeatMixer
     },
     AMBI : {
         name: "Ambi",
@@ -42,7 +58,7 @@ const NODECONFIG = {    UDPLED : {
 
         ],
         output: [
-            {name:"Color", type : "ledArray", id:0}
+            {name:"Color", type : "ChromaScale", id:0}
         ],
         args: [
             {name:"Screen",var: "display", type : "number", value:1},
@@ -50,6 +66,21 @@ const NODECONFIG = {    UDPLED : {
             {name:"numPanel", var: "num_panel", type : "number", value: 8}
         ],
         func : Ambi
+    },
+    STATICCOLOR : {
+        name: "StaticLedColor",
+        input: [
+
+        ],
+        output: [
+            {name:"Color", type : "ChromaScale", id:0}
+        ],
+        args: [
+            {name:"Red",var: "r", type : "number", value:1},
+            {name:"Green", var:"g", type : "number", value:20},
+            {name:"Blue", var: "b", type : "number", value: 8}
+        ],
+        func : StaticLedColor
     }
 
 
@@ -79,10 +110,7 @@ class NodeManager{
         let inp = {}, outp={}
         for(let key in this.nodes){
             if(this.nodes[key].id===parseInt(con.output.match(/\d+/g)[0])){
-                if(this.nodes[key].func.start!==undefined){
-                    this.nodes[key].func.start()
 
-                }
              outp= this.nodes[key].output.find((x)=>(x.name===con.output.match(/[a-zA-Z]+/g)[0]))
             }
             if(this.nodes[key].id===parseInt(con.input.match(/\d+/g)[0])){
@@ -96,6 +124,15 @@ class NodeManager{
     }
     getConfig(){
         return NODECONFIG
+    }
+    startNode(key){
+        if(this.nodes[key].started) {
+            this.nodes[key].stop()
+        }
+        else{
+            this.nodes[key].start()
+        }
+        this.socketApi.update()
     }
 
 

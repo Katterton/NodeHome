@@ -41,6 +41,7 @@ x=0
     input = []
     output = []
     args = []
+    started=false
     func = (node)=>(console.log(node.input[0].data));
     constructor(name, input, output ,args,func)
     {
@@ -50,6 +51,9 @@ x=0
     for(let i of input ){
         this.input.push(new Input(i, this))
     }
+    if(this.input.length===0){
+        this.input.push(new Input({name:"Start", type : "boolean", id:0, var: "start"}, this))
+    }
         for(let i of output ){
 
             this.output.push(new Output(i,this))
@@ -57,13 +61,25 @@ x=0
         }
         for(let i of args){
             this[i.var]=i.value
-            this.args.push(new Arguement(i))
+            this.args.push(new Arguement(i,this))
 
         }
 
         this.func = new func(this)
 
 
+    }
+    start(){
+    if(this.func.start!==undefined){
+        this.func.start()
+        this.started=true
+    }
+    }
+    stop(){
+        if(this.func.start!==undefined){
+            this.func.stop()
+            this.started=false
+        }
     }
 }
 class Arguement{
@@ -72,12 +88,16 @@ class Arguement{
     data = ""
     value = ""
 
-    constructor(arg) {
+    constructor(arg,node) {
         this.name= arg.name
         this.type= arg.type
         this.value = arg.value
         this.var = arg.var
-
+this.node=node
+    }
+    update(data){
+        this.value = data
+        this.node[this.var]=data
     }
 
 }
@@ -115,6 +135,14 @@ class Input extends IO {
     }
 
     update(data) {
+        if(this.name==="Start"){
+            if(data){
+                this.node.start()
+            }
+            else{
+                this.node.stop()
+            }
+        }
         this.data = data
         this.node[this.var]=data
         this.node.func.update(this.node)
