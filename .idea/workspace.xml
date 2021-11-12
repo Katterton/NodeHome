@@ -1,18 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9bbbc3f1-e508-447f-af69-3bce1e16fa80" name="Changes" comment="added a lot of stuff">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Beat.js" beforeDir="false" afterPath="$PROJECT_DIR$/Beat.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HTMLNodeGen.js" beforeDir="false" afterPath="$PROJECT_DIR$/HTMLNodeGen.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Node.js" beforeDir="false" afterPath="$PROJECT_DIR$/Node.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SocketApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/SocketApi.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UDPled.js" beforeDir="false" afterPath="$PROJECT_DIR$/UDPled.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ambi.js" beforeDir="false" afterPath="$PROJECT_DIR$/ambi.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nodeManager.js" beforeDir="false" afterPath="$PROJECT_DIR$/nodeManager.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/NodeStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/NodeStyle.css" afterDir="false" />
-    </list>
+    <list default="true" id="9bbbc3f1-e508-447f-af69-3bce1e16fa80" name="Changes" comment="Changes" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -40,6 +29,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ChangesTree.GroupingKeys" value="" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
@@ -87,7 +77,7 @@
       <option name="presentableId" value="Default" />
       <updated>1636551702111</updated>
       <workItem from="1636551704711" duration="5563000" />
-      <workItem from="1636716875890" duration="22356000" />
+      <workItem from="1636716875890" duration="22666000" />
     </task>
     <task id="LOCAL-00001" summary="1. commit">
       <created>1636559012550</created>
@@ -124,7 +114,21 @@
       <option name="project" value="LOCAL" />
       <updated>1636727145950</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="First Functional Version">
+      <created>1636743707727</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1636743707732</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Changes">
+      <created>1636743881298</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1636743881298</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -158,37 +162,43 @@
     <MESSAGE value="1. commit" />
     <MESSAGE value="somewhat functioning socketApi" />
     <MESSAGE value="added a lot of stuff" />
-    <option name="LAST_COMMIT_MESSAGE" value="added a lot of stuff" />
+    <MESSAGE value="First Functional Version" />
+    <MESSAGE value="Changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changes" />
   </component>
   <component name="WindowStateProjectService">
     <state x="736" y="356" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1636630842217">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="736" y="356" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.2560.1400/-1920.328.1920.1040@0.0.2560.1400" timestamp="1636630842217" />
-    <state x="910" y="269" key="CommitChangelistDialog2" timestamp="1636727145183">
+    <state x="332" y="269" width="1318" height="844" key="CommitChangelistDialog2" timestamp="1636743880728">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="910" y="269" key="CommitChangelistDialog2/0.0.2560.1400/-1920.328.1920.1040@0.0.2560.1400" timestamp="1636727145183" />
-    <state width="2539" height="419" key="GridCell.Tab.0.bottom" timestamp="1636743477592">
+    <state x="332" y="269" width="1318" height="844" key="CommitChangelistDialog2/0.0.2560.1400/-1920.328.1920.1040@0.0.2560.1400" timestamp="1636743880728" />
+    <state width="2539" height="419" key="GridCell.Tab.0.bottom" timestamp="1636743590964">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2539" height="419" key="GridCell.Tab.0.bottom/0.0.2560.1400/-1920.328.1920.1040@0.0.2560.1400" timestamp="1636743477592" />
-    <state width="2539" height="419" key="GridCell.Tab.0.center" timestamp="1636743477592">
+    <state width="2539" height="419" key="GridCell.Tab.0.bottom/0.0.2560.1400/-1920.328.1920.1040@0.0.2560.1400" timestamp="1636743590964" />
+    <state width="2539" height="419" key="GridCell.Tab.0.center" timestamp="1636743590964">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2539" height="419" key="GridCell.Tab.0.center/0.0.2560.1400/-1920.328.1920.1040@0.0.2560.1400" timestamp="1636743477592" />
-    <state width="2539" height="419" key="GridCell.Tab.0.left" timestamp="1636743477592">
+    <state width="2539" height="419" key="GridCell.Tab.0.center/0.0.2560.1400/-1920.328.1920.1040@0.0.2560.1400" timestamp="1636743590964" />
+    <state width="2539" height="419" key="GridCell.Tab.0.left" timestamp="1636743590964">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2539" height="419" key="GridCell.Tab.0.left/0.0.2560.1400/-1920.328.1920.1040@0.0.2560.1400" timestamp="1636743477592" />
-    <state width="2539" height="419" key="GridCell.Tab.0.right" timestamp="1636743477592">
+    <state width="2539" height="419" key="GridCell.Tab.0.left/0.0.2560.1400/-1920.328.1920.1040@0.0.2560.1400" timestamp="1636743590964" />
+    <state width="2539" height="419" key="GridCell.Tab.0.right" timestamp="1636743590964">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2539" height="419" key="GridCell.Tab.0.right/0.0.2560.1400/-1920.328.1920.1040@0.0.2560.1400" timestamp="1636743477592" />
-    <state x="873" y="434" key="Vcs.Push.Dialog.v2" timestamp="1636727152747">
+    <state width="2539" height="419" key="GridCell.Tab.0.right/0.0.2560.1400/-1920.328.1920.1040@0.0.2560.1400" timestamp="1636743590964" />
+    <state x="873" y="434" key="Vcs.Push.Dialog.v2" timestamp="1636743882674">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="873" y="434" key="Vcs.Push.Dialog.v2/0.0.2560.1400/-1920.328.1920.1040@0.0.2560.1400" timestamp="1636727152747" />
+    <state x="873" y="434" key="Vcs.Push.Dialog.v2/0.0.2560.1400/-1920.328.1920.1040@0.0.2560.1400" timestamp="1636743882674" />
+    <state x="1086" y="425" key="com.intellij.openapi.vcs.changes.SpecificFilesViewDialog" timestamp="1636743802453">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1086" y="425" key="com.intellij.openapi.vcs.changes.SpecificFilesViewDialog/0.0.2560.1400/-1920.328.1920.1040@0.0.2560.1400" timestamp="1636743802453" />
     <state x="1090" y="615" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1636718418286">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
