@@ -4,8 +4,9 @@ const Ambi = require("./ambi.js")
 const Beat = require("./Beat.js")
 const BeatMixer = require("./BeatMixer.js")
 
-const StaticLedColor = require("./StaticLedColor")
-
+const StaticLedColor = require("./StaticLedColor.js")
+const ColorRange = require("./ColorRange.js")
+const ColorRangeCycle = require("./ColorRangeCylce.js")
 const NODECONFIG = {    UDPLED : {
         name: "UDPLed",
         input: [
@@ -81,6 +82,34 @@ const NODECONFIG = {    UDPLED : {
             {name:"Blue", var: "b", type : "number", value: 8}
         ],
         func : StaticLedColor
+    },
+    COLORRANGE : {
+        name: "ColorRange",
+        input: [
+
+        ],
+        output: [
+            {name:"Color", type : "ChromaScale", id:0}
+        ],
+        args: [
+            {name:"RGBArray",var: "data", type : "TextArray", value:1},
+
+        ],
+        func : ColorRange
+    },
+    COLORRANGECYCLE : {
+        name: "ColorRangeCycle",
+        input: [
+            {name:"Color", type : "ChromaScale", id:0, var: "data"}
+        ],
+        output: [
+            {name:"Color", type : "ChromaScale", id:0}
+        ],
+        args: [
+            {name:"Updates",var: "data", type : "number", value:10},
+
+        ],
+        func : ColorRangeCycle
     }
 
 
