@@ -1,7 +1,7 @@
 var Node = require("./Node.js")
 const UDPled = require("./UDPled.js")
-const Ambi = require("./ambi.js")
-const Beat = require("./Beat.js")
+//const Ambi = require("./ambi.js") //because someone doesnt have node build tools
+//const Beat = require("./Beat.js")
 const BeatMixer = require("./BeatMixer.js")
 
 const StaticLedColor = require("./StaticLedColor.js")
@@ -35,7 +35,7 @@ const NODECONFIG = {    UDPLED : {
             {name:"AudioDevice", var:"audio_device", type : "number", value:10},
             {name:"Sensitivity", var: "sensitivity", type : "number", value: 10}
         ],
-        func : Beat
+        func : ()=>(1)
     },
     BEATMIXER : {
         name: "BeatMixer",
@@ -66,7 +66,7 @@ const NODECONFIG = {    UDPLED : {
             {name:"FPS", var:"fps", type : "number", value:20},
             {name:"numPanel", var: "num_panel", type : "number", value: 8}
         ],
-        func : Ambi
+        func : ()=>(1)
     },
     STATICCOLOR : {
         name: "StaticLedColor",
