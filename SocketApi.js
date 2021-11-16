@@ -36,13 +36,16 @@ socket.on("connectNodes",(msg)=>{
         socket.on("NodePositionChange",(msg)=>{
             this.nodeManager.nodes[msg.id].x=msg.x
             this.nodeManager.nodes[msg.id].y=msg.y
-            console.log(this.nodeManager.nodes[msg.id].x)
+
             io.emit("NodePositionChange",msg)
         })
         socket.on("ArgChange",(msg)=>{
-console.log(this.nodeManager.nodes[msg.id].args.find(x=>x.var===msg.ioid),this.nodeManager.nodes[msg.id])
+
             this.nodeManager.nodes[msg.id].args.find(x=>x.var===msg.ioid).update(msg.value)
             io.emit("ArgChange",msg)
+        })
+        socket.on("removeConnection",(msg)=>{
+this.nodeManager.removeConnection(msg.con)
         })
 
         console.log('a user connected');

@@ -1,4 +1,4 @@
-var Node = require("./Node.js")
+var Node = require("./Nodes.js")
 const UDPled = require("./UDPled.js")
 //const Ambi = require("./ambi.js") //because someone doesnt have node build tools
 //const Beat = require("./Beat.js")
@@ -92,7 +92,7 @@ const NODECONFIG = {    UDPLED : {
             {name:"Color", type : "ChromaScale", id:0}
         ],
         args: [
-            {name:"RGBArray",var: "data", type : "TextArray", value:1},
+            {name:"RGBArray",var: "data", type : "TextArray", value:"[[255,0,0],[0,255,0],[0,0,255]]"},
 
         ],
         func : ColorRange
@@ -100,7 +100,7 @@ const NODECONFIG = {    UDPLED : {
     COLORRANGECYCLE : {
         name: "ColorRangeCycle",
         input: [
-            {name:"Color", type : "ChromaScale", id:0, var: "data"}
+            {name:"color", type : "ChromaScale", id:0, var: "data"}
         ],
         output: [
             {name:"Color", type : "ChromaScale", id:0}
@@ -147,6 +147,17 @@ class NodeManager{
             }
         }
         inp.subscribe(outp)
+    }
+    removeConnection(con){
+        this.connections.splice(this.connections.findIndex(x=>x===con),1)
+        for(let key in this.nodes) {
+            if (this.nodes[key].id === parseInt(con.input.match(/\d+/g)[0])) {
+             this.nodes[key].input.find(x=>(x.name===con.input.substring(1) && x.io==="input")).unsubscribe()
+
+            }
+        }
+
+        this.socketApi.update()
     }
     deleteNode(){
 

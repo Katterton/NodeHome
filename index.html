@@ -8,6 +8,7 @@
     <title>Title</title>
 </head>
 <body id="a">
+<div id='rightmenu' style='position:absolute; z-index: 10; visibility:hidden; left:0px; top:0px'><ul class='list-group'> <a href='#' class='list-group-item list-group-item-action list-group-item-danger'>Remove Connection</a></ul></div>
 <div id="add"></div>
 <svg id="svg" style="z-index: 5;"  width="1000" height="1000"></svg><div id = "Nodes"></div>
 </body>
@@ -241,12 +242,44 @@ function renderConnections(ele="svg"){
                 let avgy = (iny + outy) / 2
 
 
-            svg.innerHTML+="<path  d='M" + outx + " " + outy + " Q " + (avgx + outx) / 2 + " " + outy + ", " + avgx + " " + avgy + " T " + inx + " " + iny + "' stroke='black' fill='transparent'>"
+            svg.innerHTML+="<path id='con"+con.input+con.output+"' d='M" + outx + " " + outy + " Q " + (avgx + outx) / 2 + " " + outy + ", " + avgx + " " + avgy + " T " + inx + " " + iny + "' stroke='black' fill='transparent'>"
         }
-
+    setTimeout(()=>{
+    for(let con of connections) {
+    document.getElementById("con"+con.input+con.output).addEventListener('contextmenu', function(ev) {
+        ev.preventDefault();
+       openRightMenu(ev, con)
+        return false;
+    }, false);
+    }
+},5
+    )
 }
 
+function openRightMenu(ev, con) {
 
+
+
+    document.getElementById("rightmenu").style.left=ev.clientX+"px"
+    document.getElementById("rightmenu").style.top= ev.clientY+"px"
+    document.getElementById("rightmenu").style.visibility= "visible"
+    selectedCon=con
+
+    }
+    var selectedCon;
+    document.getElementById("a").addEventListener("mousedown", function (e) {
+        if(document.getElementById("rightmenu").style.visibility==="visible") {
+            if (e.target.localName === "a") {
+                socket.emit("removeConnection", {con: selectedCon})
+            }
+            document.getElementById("rightmenu").style.visibility = "hidden"
+            // document.getElementById("rightmenu").remove()
+
+        }
+
+
+
+    })
 
 
 

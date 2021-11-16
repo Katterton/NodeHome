@@ -7,6 +7,9 @@ class Ambi{
     constructor(node) {
         this.node = node
     }
+    send(){
+
+    }
 
     start(){
         if(this.dd===undefined) {
@@ -27,7 +30,7 @@ class Ambi{
 
 
 
-                            this.node.output[0].update({data:chroma.scale(col).mode('lrgb').domain([0, 100]),brightness:1});
+                            this.send({data:chroma.scale(col).mode('lrgb').domain([0, 100]),brightness:1});
 
 
 

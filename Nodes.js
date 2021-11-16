@@ -35,40 +35,45 @@ const AMBI = {
 }
 
 
-class Node{
-x=0
-    y=0
+class Nodes {
+    x = 0
+    y = 0
     input = []
     output = []
     args = []
-    started=false
-    func = (node)=>(console.log(node.input[0].data));
-    constructor(name, input, output ,args,func)
-    {
-        this.name=name
-        this.id =id
-        id++;
-    for(let i of input ){
-        this.input.push(new Input(i, this))
-    }
-    if(this.input.length===0){
-        this.input.push(new Input({name:"Start", type : "boolean", id:0, var: "start"}, this))
-    }
-        for(let i of output ){
+    started = false
+    func = (node) => (console.log(node.input[0].data));
 
-            this.output.push(new Output(i,this))
+    constructor(name, input, output, args, func) {
+        this.name = name
+        this.id = id
+        id++;
+        for (let i of input) {
+            this.input.push(new Input(i, this))
+        }
+        if (this.input.length === 0) {
+            this.input.push(new Input({name: "Start", type: "boolean", id: 0, var: "start"}, this))
+        }
+        for (let i of output) {
+
+            this.output.push(new Output(i, this))
 
         }
-        for(let i of args){
-            this[i.var]=i.value
-            this.args.push(new Arguement(i,this))
+
+        for (let i of args) {
+            this[i.var] = i.value
+            this.args.push(new Arguement(i, this))
 
         }
 
         this.func = new func(this)
+        if (this.output.length !== 0) {
 
-
+        this.send= function(data, port =0){
+        this.output[port].update(data)
+            }
     }
+}
     start(){
     if(this.func.start!==undefined){
         this.func.start()
@@ -133,6 +138,16 @@ class Input extends IO {
 
         }
     }
+    unsubscribe() {
+
+
+
+            this.output.removeListener(this)
+            this.output={}
+
+
+    }
+
 
     update(data) {
         if(this.name==="Start"){
@@ -156,20 +171,28 @@ class Output extends IO{
         super(output, node);
         this.io="output"
     }
+
     on(input){
         this.inputs.push(input)
         input.output=this
     }
+    removeListener(input){
+
+        this.inputs.splice(this.inputs.findIndex(x=>x===input), 1)
+}
     update(data){
         for(let i of this.inputs){
             i.update(data)
         }
     }
+    remove(){
+
+    }
 
 }
-module.exports=Node
-//let test1 = new Node(UDPLED.name,UDPLED.input, UDPLED.output, UDPLED.args, UDPLED.func)
-//let test2 = new Node(AMBI.name,AMBI.input, AMBI.output, AMBI.args, AMBI.func)
+module.exports=Nodes
+//let test1 = new Nodes(UDPLED.name,UDPLED.input, UDPLED.output, UDPLED.args, UDPLED.func)
+//let test2 = new Nodes(AMBI.name,AMBI.input, AMBI.output, AMBI.args, AMBI.func)
 //test1.input[0].subscribe(test2.output[0])
 //test2.func.start()
 //console.log(parseHTML(test1))
