@@ -1,16 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9bbbc3f1-e508-447f-af69-3bce1e16fa80" name="Changes" comment="removed all os specific dependencies">
+    <list default="true" id="9bbbc3f1-e508-447f-af69-3bce1e16fa80" name="Changes" comment="added removeConnection">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ColorRange.js" beforeDir="false" afterPath="$PROJECT_DIR$/ColorRange.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ColorRangeCylce.js" beforeDir="false" afterPath="$PROJECT_DIR$/ColorRangeCylce.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Node.js" beforeDir="false" afterPath="$PROJECT_DIR$/Nodes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTMLNodeGen.js" beforeDir="false" afterPath="$PROJECT_DIR$/HTMLNodeGen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Nodes.js" beforeDir="false" afterPath="$PROJECT_DIR$/Nodes.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SocketApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/SocketApi.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ambi.js" beforeDir="false" afterPath="$PROJECT_DIR$/ambi.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/nodeManager.js" beforeDir="false" afterPath="$PROJECT_DIR$/nodeManager.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,7 +88,7 @@
       <workItem from="1636716875890" duration="27059000" />
       <workItem from="1636791275884" duration="5048000" />
       <workItem from="1636976601310" duration="9714000" />
-      <workItem from="1637053551761" duration="5242000" />
+      <workItem from="1637053551761" duration="10764000" />
     </task>
     <task id="LOCAL-00001" summary="1. commit">
       <created>1636559012550</created>
@@ -177,7 +174,14 @@
       <option name="project" value="LOCAL" />
       <updated>1636802987791</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="added removeConnection">
+      <created>1637063840349</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1637063840349</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -214,37 +218,38 @@
     <MESSAGE value="First Functional Version" />
     <MESSAGE value="Changes" />
     <MESSAGE value="removed all os specific dependencies" />
-    <option name="LAST_COMMIT_MESSAGE" value="removed all os specific dependencies" />
+    <MESSAGE value="added removeConnection" />
+    <option name="LAST_COMMIT_MESSAGE" value="added removeConnection" />
   </component>
   <component name="WindowStateProjectService">
     <state x="736" y="356" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1636630842217">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="736" y="356" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.2560.1400/-1920.328.1920.1040@0.0.2560.1400" timestamp="1636630842217" />
-    <state x="332" y="269" width="1318" height="844" key="CommitChangelistDialog2" timestamp="1636802987140">
+    <state x="332" y="269" width="1318" height="844" key="CommitChangelistDialog2" timestamp="1637063839028">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="332" y="269" width="1318" height="844" key="CommitChangelistDialog2/0.0.2560.1400/-1920.328.1920.1040@0.0.2560.1400" timestamp="1636802987140" />
-    <state width="2539" height="419" key="GridCell.Tab.0.bottom" timestamp="1637056384671">
+    <state x="332" y="269" width="1318" height="844" key="CommitChangelistDialog2/0.0.2560.1400/-1920.328.1920.1040@0.0.2560.1400" timestamp="1637063839028" />
+    <state width="2539" height="419" key="GridCell.Tab.0.bottom" timestamp="1637102865300">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2539" height="419" key="GridCell.Tab.0.bottom/0.0.2560.1400/-1920.328.1920.1040@0.0.2560.1400" timestamp="1637056384671" />
-    <state width="2539" height="419" key="GridCell.Tab.0.center" timestamp="1637056384670">
+    <state width="2539" height="419" key="GridCell.Tab.0.bottom/0.0.2560.1400/-1920.328.1920.1040@0.0.2560.1400" timestamp="1637102865300" />
+    <state width="2539" height="419" key="GridCell.Tab.0.center" timestamp="1637102865300">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2539" height="419" key="GridCell.Tab.0.center/0.0.2560.1400/-1920.328.1920.1040@0.0.2560.1400" timestamp="1637056384670" />
-    <state width="2539" height="419" key="GridCell.Tab.0.left" timestamp="1637056384669">
+    <state width="2539" height="419" key="GridCell.Tab.0.center/0.0.2560.1400/-1920.328.1920.1040@0.0.2560.1400" timestamp="1637102865300" />
+    <state width="2539" height="419" key="GridCell.Tab.0.left" timestamp="1637102865299">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2539" height="419" key="GridCell.Tab.0.left/0.0.2560.1400/-1920.328.1920.1040@0.0.2560.1400" timestamp="1637056384669" />
-    <state width="2539" height="419" key="GridCell.Tab.0.right" timestamp="1637056384670">
+    <state width="2539" height="419" key="GridCell.Tab.0.left/0.0.2560.1400/-1920.328.1920.1040@0.0.2560.1400" timestamp="1637102865299" />
+    <state width="2539" height="419" key="GridCell.Tab.0.right" timestamp="1637102865300">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2539" height="419" key="GridCell.Tab.0.right/0.0.2560.1400/-1920.328.1920.1040@0.0.2560.1400" timestamp="1637056384670" />
-    <state x="873" y="434" key="Vcs.Push.Dialog.v2" timestamp="1636802989600">
+    <state width="2539" height="419" key="GridCell.Tab.0.right/0.0.2560.1400/-1920.328.1920.1040@0.0.2560.1400" timestamp="1637102865300" />
+    <state x="873" y="434" key="Vcs.Push.Dialog.v2" timestamp="1637064151515">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="873" y="434" key="Vcs.Push.Dialog.v2/0.0.2560.1400/-1920.328.1920.1040@0.0.2560.1400" timestamp="1636802989600" />
+    <state x="873" y="434" key="Vcs.Push.Dialog.v2/0.0.2560.1400/-1920.328.1920.1040@0.0.2560.1400" timestamp="1637064151515" />
     <state x="1086" y="425" key="com.intellij.openapi.vcs.changes.SpecificFilesViewDialog" timestamp="1636743913846">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>

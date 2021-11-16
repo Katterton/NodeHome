@@ -74,6 +74,23 @@ class Nodes {
             }
     }
 }
+remove(){
+        for(let input of this.input){
+            input.unsubscribe()
+        }
+    for(let output of this.output){
+        output.remove()
+    }
+    this.input=[
+    ]
+    this.output=[]
+    if(this.func.remove!==undefined){
+        this.func.remove()
+    }
+    this.func=null
+
+
+}
     start(){
     if(this.func.start!==undefined){
         this.func.start()
@@ -141,10 +158,10 @@ class Input extends IO {
     unsubscribe() {
 
 
-
-            this.output.removeListener(this)
-            this.output={}
-
+if(this.output!==undefined) {
+    this.output.removeListener(this)
+    this.output = undefined
+}
 
     }
 
@@ -186,7 +203,9 @@ class Output extends IO{
         }
     }
     remove(){
-
+        for(let input of this.inputs){
+            input.unsubscribe()
+        }
     }
 
 }

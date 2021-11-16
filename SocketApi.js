@@ -33,6 +33,7 @@ socket.on("startNode", (msg)=>{
 socket.on("connectNodes",(msg)=>{
             nodeManager.addConnection(msg)
         })
+
         socket.on("NodePositionChange",(msg)=>{
             this.nodeManager.nodes[msg.id].x=msg.x
             this.nodeManager.nodes[msg.id].y=msg.y
@@ -47,7 +48,9 @@ socket.on("connectNodes",(msg)=>{
         socket.on("removeConnection",(msg)=>{
 this.nodeManager.removeConnection(msg.con)
         })
-
+        socket.on("removeNode",(msg)=>{
+            this.nodeManager.deleteNode(msg.node)
+        })
         console.log('a user connected');
     });
 

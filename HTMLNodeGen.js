@@ -1,5 +1,5 @@
 function parseHTML(node){
-    let out = '<div class="card node" id="'+node.id+node.name+'"  style="width: 18rem;left: '+node.x+'px;top: '+node.y+'px"><div class="card-body"><h5 class="card-title">'+node.name+'</h5>'
+    let out = '<div class="card node" id="'+node.id+node.name+'"  style="width: 18rem;left: '+node.x+'px;top: '+node.y+'px"><div class="card-body"><h5 class="card-title">'+node.name+'</h5><div class="delete"  id="'+node.id+node.name+'del" >X</div>'
     for(let arg of node.args){
 
 

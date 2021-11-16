@@ -159,7 +159,15 @@ class NodeManager{
 
         this.socketApi.update()
     }
-    deleteNode(){
+    deleteNode(node){
+       for(let key in this.nodes){
+
+           if(this.nodes[key].id===parseInt(node.match(/\d+/g)[0])){
+               this.nodes[key].remove()
+               delete this.nodes[key]
+               this.socketApi.update()
+           }
+       }
 
     }
     getConfig(){

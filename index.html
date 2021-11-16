@@ -107,7 +107,13 @@ let a = ele.children[0].children
             })
         }
     }
-
+    function addStartListener(ele){
+        if(document.getElementById(ele.id+"del")) {
+            document.getElementById(ele.id+"del").addEventListener("click", function () {
+                socket.emit("removeNode",{node:ele.id})
+            })
+        }
+    }
 
     function makeDraggable(ele){
 
@@ -225,32 +231,36 @@ console.log({output:ele,input:p})
 function renderConnections(ele="svg"){
         let svg = document.getElementById(ele)
     svg.innerHTML=""
-    for(let con of connections){
+    for(let con of connections) {
         let out = document.getElementById(con.output)
+        let In = document.getElementById(con.input)
         console.log(con.output)
-        let outRect = out.getBoundingClientRect()
-        let outx = outRect.x
-        let outy = outRect.y + Math.floor(outRect.height / 2)-30
+        if (out !== null && In !==null) {
+            let outRect = out.getBoundingClientRect()
+            let outx = outRect.x
+            let outy = outRect.y + Math.floor(outRect.height / 2) - 30
 
 
 
-                let In = document.getElementById(con.input)
-                let inRect = In.getBoundingClientRect()
-                let inx = inRect.x
-                let iny = inRect.y + Math.floor(inRect.height / 2) - 30
-                let avgx = (inx + outx) / 2
-                let avgy = (iny + outy) / 2
+            let inRect = In.getBoundingClientRect()
+            let inx = inRect.x
+            let iny = inRect.y + Math.floor(inRect.height / 2) - 30
+            let avgx = (inx + outx) / 2
+            let avgy = (iny + outy) / 2
 
 
-            svg.innerHTML+="<path id='con"+con.input+con.output+"' d='M" + outx + " " + outy + " Q " + (avgx + outx) / 2 + " " + outy + ", " + avgx + " " + avgy + " T " + inx + " " + iny + "' stroke='black' fill='transparent'>"
+            svg.innerHTML += "<path id='con" + con.input + con.output + "' d='M" + outx + " " + outy + " Q " + (avgx + outx) / 2 + " " + outy + ", " + avgx + " " + avgy + " T " + inx + " " + iny + "' stroke='black' fill='transparent'>"
         }
+    }
     setTimeout(()=>{
     for(let con of connections) {
-    document.getElementById("con"+con.input+con.output).addEventListener('contextmenu', function(ev) {
-        ev.preventDefault();
-       openRightMenu(ev, con)
-        return false;
-    }, false);
+        if (document.getElementById("con" + con.input + con.output) !== null) {
+            document.getElementById("con" + con.input + con.output).addEventListener('contextmenu', function (ev) {
+                ev.preventDefault();
+                openRightMenu(ev, con)
+                return false;
+            }, false);
+        }
     }
 },5
     )
