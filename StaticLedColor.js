@@ -6,7 +6,7 @@ class StaticLedColor{
 }
     start(){
         this.interval=setInterval(()=> {
-            this.node.output[0].update( {data: chroma.scale([[this.node.r, this.node.g, this.node.b]]).mode('lrgb').domain([0, 100]),brightness:1})},100)
+            this.node.output[0].update( {data: chroma.scale([[this.node.r, this.node.g, this.node.b]]).mode('lrgb'),brightness:1})},100)
 
 
     }

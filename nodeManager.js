@@ -174,6 +174,7 @@ class NodeManager{
         return NODECONFIG
     }
     startNode(key){
+        console.log(key)
         if(this.nodes[key].started) {
             this.nodes[key].stop()
         }

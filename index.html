@@ -107,13 +107,6 @@ let a = ele.children[0].children
             })
         }
     }
-    function addStartListener(ele){
-        if(document.getElementById(ele.id+"del")) {
-            document.getElementById(ele.id+"del").addEventListener("click", function () {
-                socket.emit("removeNode",{node:ele.id})
-            })
-        }
-    }
 
     function makeDraggable(ele){
 

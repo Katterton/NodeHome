@@ -13,7 +13,7 @@ this.node=node
 
     }
     update() {
-        this.msg_parse(this.node.data.data, this.node.data.brightness).then(async (msg) => {
+        this.msg_parse(this.node.data.data.domain([0, 166]), this.node.data.brightness).then(async (msg) => {
 
          //   console.log(Buffer.from(msg), this.node.data.brightness)
         this.client.send(Buffer.from(msg), this.node.port, this.node.ip)

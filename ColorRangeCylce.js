@@ -6,10 +6,10 @@ class ColorRangeCycle{
     }
     update(){
 
-         this.node.send( {data: this.node.data.data.padding([this.offset, 0.5-this.offset]),brightness:1})
+         this.node.send( {data: this.node.data.data.padding([this.offset, 0.5-this.offset]),brightness:0.5})
 if(this.interval===undefined){
     this.interval=setInterval(()=> {
-        console.log(this.node.data)
+
         if (this.offset < 0.5) {
             this.offset += 0.0001
         } else {
