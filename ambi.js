@@ -7,8 +7,8 @@ class Ambi{
     constructor(node) {
         this.node = node
     }
-    send(){
-
+    send(data){
+this.node.send(data)
     }
 
     start(){
@@ -30,7 +30,7 @@ class Ambi{
 
 
 
-                            this.send({data:chroma.scale(col).mode('lrgb').domain([0, 100]),brightness:1});
+                            this.send({data:chroma.scale(col).mode('lrgb'),brightness:1});
 
 
 

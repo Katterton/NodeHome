@@ -16,6 +16,7 @@ function SocketApi(HTMLNodeGen) {
 
     const io = new Server(server);
     app.use(express.static('public'));
+    app.use(express.static('node_modules/bootstrap-colorpicker/'));
     app.get('/', (req, res) => {
         res.sendFile(__dirname + '/index.html');
     });
@@ -43,6 +44,7 @@ socket.on("connectNodes",(msg)=>{
         socket.on("ArgChange",(msg)=>{
 
             this.nodeManager.nodes[msg.id].args.find(x=>x.var===msg.ioid).update(msg.value)
+            this.nodeManager.save()
             io.emit("ArgChange",msg)
         })
         socket.on("removeConnection",(msg)=>{

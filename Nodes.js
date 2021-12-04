@@ -1,38 +1,7 @@
-const UDPled = require("./UDPled.js")
-const Ambi = require("./ambi.js")
+
 const parseHTML = require("./HTMLNodeGen.js")
-var id = 0;
-const UDPLED = {
-    name: "UDPLed",
-    input: [
-        {name:"Color", type : "ledArray", id:0, var: "data"}
-    ],
-    output: [
-        //{name:"WIP Status", type : "number", id:0}
-    ],
-    args: [
-        {name:"IP",var: "ip", type : "String", value:"182.168.1.100"},
-        {name:"Port", var:"port", type : "number", value:80},
-        {name:"numLeds", var: "num_leds", type : "number", value: 90}
-    ],
-    func : UDPled
-}
+var idx = 0;
 
-const AMBI = {
-    name: "Ambi",
-    input: [
-
-    ],
-    output: [
-        {name:"Color", type : "ledArray", id:0}
-    ],
-    args: [
-        {name:"Screen",var: "display", type : "number", value:1},
-        {name:"FPS", var:"fps", type : "number", value:20},
-        {name:"numPanel", var: "num_panel", type : "number", value: 90}
-    ],
-    func : Ambi
-}
 
 
 class Nodes {
@@ -44,10 +13,15 @@ class Nodes {
     started = false
     func = (node) => (console.log(node.input[0].data));
 
-    constructor(name, input, output, args, func) {
+    constructor(name, input, output, args, func,id=undefined) {
         this.name = name
-        this.id = id
-        id++;
+        if(id!==undefined){
+            this.id=id
+        }
+        else {
+            this.id = idx
+            idx++;
+        }
         for (let i of input) {
             this.input.push(new Input(i, this))
         }
@@ -103,6 +77,22 @@ remove(){
             this.started=false
         }
     }
+    serialize(){
+       let out= {id:this.id, name:this.name,x:this.x, y:this.y}
+       out.args=[]
+       for(let arg of this.args){
+           out.args.push({name:arg.name, value: arg.value})
+       }
+       out.input=[]
+        for(let input of this.input){
+            out.input.push({name:input.name, id:input.id})
+            if(input.output!==undefined){
+                out.input[out.input.length-1].output={name:input.output.name, id:input.output.node.id, parent:{name:input.output.node.name, value: input.output.node.value}}
+            }
+        }
+
+    return out
+    }
 }
 class Arguement{
     name = ""
@@ -120,6 +110,9 @@ this.node=node
     update(data){
         this.value = data
         this.node[this.var]=data
+        if(this.node.func.updateArgs!==undefined){
+            this.node.func.updateArgs(this.var)
+        }
     }
 
 }

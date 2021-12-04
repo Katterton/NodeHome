@@ -11,11 +11,16 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bootstrap-colorpicker": "^3.4.0",
     "chroma-js": "^2.1.2",
     "express": "^4.17.1",
-    "socket.io": "^4.3.2"
+    "get-rgba-palette": "^2.0.1",
+    "sharp": "^0.29.3",
+    "socket.io": "^4.3.2",
+    "windows-desktop-duplication": "^1.0.3"
   },
   "devDependencies": {
+    "serialport": "^9.2.7",
     "socket.io": "^4.3.2"
   }
 }

@@ -1,8 +1,10 @@
 var Node = require("./Nodes.js")
 const UDPled = require("./UDPled.js")
-//const Ambi = require("./ambi.js") //because someone doesnt have node build tools
+const Serialled = require("./SerialLed.js")
+const Ambi = require("./ambi.js") //because someone doesnt have node build tools
 //const Beat = require("./Beat.js")
 const BeatMixer = require("./BeatMixer.js")
+const fs = require('fs');
 
 const StaticLedColor = require("./StaticLedColor.js")
 const ColorRange = require("./ColorRange.js")
@@ -18,9 +20,24 @@ const NODECONFIG = {    UDPLED : {
         args: [
             {name:"IP",var: "ip", type : "String", value:"192.168.0.105"},
             {name:"Port", var:"port", type : "number", value:4210},
-            {name:"numLeds", var: "num_leds", type : "number", value: 90}
+            {name:"numLeds", var: "num_leds", type : "number", value: 70}
         ],
         func : UDPled
+    },
+    SERIALLED : {
+        name: "SerialLed",
+        input: [
+            {name:"Color", type : "ChromaScale", id:0, var: "data"}
+        ],
+        output: [
+            //{name:"WIP Status", type : "number", id:0}
+        ],
+        args: [
+            {name:"Baudrate",var: "baudRate", type : "number", value:250000},
+            {name:"Port", var:"port", type : "String", value:"COM4"},
+            {name:"numLeds", var: "num_leds", type : "number", value: 70}
+        ],
+        func : Serialled
     },
     BEAT : {
         name: "Beat",
@@ -66,7 +83,7 @@ const NODECONFIG = {    UDPLED : {
             {name:"FPS", var:"fps", type : "number", value:20},
             {name:"numPanel", var: "num_panel", type : "number", value: 8}
         ],
-        func : ()=>(1)
+        func : Ambi
     },
     STATICCOLOR : {
         name: "StaticLedColor",
@@ -92,7 +109,7 @@ const NODECONFIG = {    UDPLED : {
             {name:"Color", type : "ChromaScale", id:0}
         ],
         args: [
-            {name:"RGBArray",var: "data", type : "TextArray", value:"[[255,0,0],[0,255,0],[0,0,255]]"},
+            {name:"RGBArray",var: "data", type : "ColorArray", value:"[[255,0,0],[0,255,0],[0,0,255]]"},
 
         ],
         func : ColorRange
@@ -115,7 +132,11 @@ const NODECONFIG = {    UDPLED : {
 
 }
 
-
+const save = (data)=>{
+    fs.writeFile("save.json",JSON.stringify( data), (err) => {
+        if (err)
+            console.log(err);
+    })}
 
 class NodeManager{
 
@@ -132,8 +153,10 @@ class NodeManager{
         this.nodes[this.idc+conf.name].id=this.idc
         this.socketApi.update()
         this.idc++
+        save(this.serialize())
     }
     addConnection(con){
+        console.log(con)
         this.connections.push(con)
         this.socketApi.addConnection(this.connections)
         let inp = {}, outp={}
@@ -142,11 +165,15 @@ class NodeManager{
 
              outp= this.nodes[key].output.find((x)=>(x.name===con.output.match(/[a-zA-Z]+/g)[0]))
             }
+
             if(this.nodes[key].id===parseInt(con.input.match(/\d+/g)[0])){
                 inp= this.nodes[key].input.find((x)=>(x.name===con.input.match(/[a-zA-Z]+/g)[0]))
             }
+
         }
+        console.log("lol",inp, outp)
         inp.subscribe(outp)
+        save(this.serialize())
     }
     removeConnection(con){
         this.connections.splice(this.connections.findIndex(x=>x===con),1)
@@ -158,6 +185,7 @@ class NodeManager{
         }
 
         this.socketApi.update()
+        save(this.serialize())
     }
     deleteNode(node){
        for(let key in this.nodes){
@@ -168,7 +196,7 @@ class NodeManager{
                this.socketApi.update()
            }
        }
-
+        save(this.serialize())
     }
     getConfig(){
         return NODECONFIG
@@ -182,6 +210,48 @@ class NodeManager{
             this.nodes[key].start()
         }
         this.socketApi.update()
+    }
+    serialize() {
+        let out = {}
+        out.nodes = {}
+        for (let key in this.nodes) {
+            out.nodes[key] = this.nodes[key].serialize()
+        }
+        return out;
+    }
+    load(data){
+        for(let key in data) {
+
+            let conf = NODECONFIG[data[key].name.toUpperCase()]
+            this.nodes[this.idc+conf.name] = new Node(conf.name, conf.input, conf.output, conf.args, conf.func)
+            this.nodes[this.idc+conf.name].id = this.idc
+            this.nodes[this.idc+conf.name].x=data[key].x
+            this.nodes[this.idc+conf.name].y=data[key].y
+            data[key].id=this.idc
+            for(let arg of data[key].args){
+                this.nodes[this.idc+conf.name].args.find((x)=>x.name===arg.name).update(arg.value)
+            }
+
+
+            this.socketApi.update()
+            this.idc++
+
+
+        }
+        for(let key in data) {
+            let conf = NODECONFIG[data[key].name.toUpperCase()]
+            for (let input of data[key].input) {
+                if(input.name!=="start"){
+                    if(input.output!==undefined) {
+                        console.log(data)
+                        this.addConnection({output: input.output.id+input.output.name, input: data[key].id+input.name})
+                    }
+                }
+            }
+        }
+    }
+    save(){
+        save(this.serialize())
     }
 
 
