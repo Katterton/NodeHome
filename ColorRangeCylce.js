@@ -10,19 +10,25 @@ class ColorRangeCycle{
 if(this.interval===undefined){
     this.interval=setInterval(()=> {
 
-        if (this.offset < 0.6) {
-            this.offset += 0.0001
-        } else {
-            this.offset = 0;
-        }
+        if(this.node.invert){
+            if (this.offset > 0) {
 
+                this.offset -= 0.0001
+            } else {
+                this.offset = 0.6;
+            }
+        }
+        else {
+            if (this.offset < 0.6) {
+
+                this.offset += 0.0001
+            } else {
+                this.offset = 0;
+            }
+        }
     },this.node.Updates)}
 }
-    updateArgs(){
-        if(this.interval!==undefined){
-           clearInterval(this.interval)
-        }
-    }
+
 
 
 

@@ -3,7 +3,16 @@ function parseHTML(node){
     for(let arg of node.args) {
         let i = 0
 
-        out += '<span class="input-group-text" id="' + node.id + arg.var + 'a">' + arg.name + '</span> <input id="' + node.id + arg.var + 'b"   type="' + arg.type + '" class="form-control ' + arg.var + '" value="' + arg.value + '" aria-label="' + arg.name + '" aria-describedby="' + node.id + arg.name + 'a">'
+
+
+        if(arg.type==="boolean"){
+            console.log(arg.value)
+            out += '<input id="' + node.id + arg.var + 'b"  name="options"  type="checkbox" class="' + arg.var + '" class="' + arg.var + '"  '+(arg.value? 'checked':'')+'><label class="form-check-label" for="' + node.id + arg.var + 'b">'+arg.name+'</label>'
+        }
+        else{
+            out += '<span class="input-group-text" id="' + node.id + arg.var + 'a">' + arg.name + '</span> <input id="' + node.id + arg.var + 'b"   type="' + arg.type + '" class="form-control ' + arg.var + '" value="' + arg.value + '" aria-label="' + arg.name + '" aria-describedby="' + node.id + arg.name + 'a">'
+        }
+
 
         if (arg.type === "ColorArray") {
 let tmp = JSON.parse(arg.value)

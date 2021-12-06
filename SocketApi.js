@@ -43,10 +43,20 @@ socket.on("connectNodes",(msg)=>{
         })
         socket.on("ArgChange",(msg)=>{
 
-            this.nodeManager.nodes[msg.id].args.find(x=>x.var===msg.ioid).update(msg.value)
+           let n =  this.nodeManager.nodes[msg.id].args.find(x=>x.var===msg.ioid)
+            if(n!==undefined){
+            if(n.type==="boolean"){
+                console.log(msg.value)
+                n.update((msg.value))
+            }
+            else{
+                console.log(msg.value)
+                n.update(msg.value)
+            }
+
             this.nodeManager.save()
             io.emit("ArgChange",msg)
-        })
+        }})
         socket.on("removeConnection",(msg)=>{
 this.nodeManager.removeConnection(msg.con)
         })

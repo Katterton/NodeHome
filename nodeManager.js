@@ -1,13 +1,12 @@
 var Node = require("./Nodes.js")
 const UDPled = require("./UDPled.js")
 const Serialled = require("./SerialLed.js")
-const Ambi = require("./ambi.js") //because someone doesnt have node build tools
-//const Beat = require("./Beat.js")
-const BeatMixer = require("./BeatMixer.js")
+
 const fs = require('fs');
 
 const StaticLedColor = require("./StaticLedColor.js")
 const ColorRange = require("./ColorRange.js")
+const ColorRangeCrop = require("./ColorRangeCrop.js")
 const ColorRangeCycle = require("./ColorRangeCylce.js")
 const NODECONFIG = {    UDPLED : {
         name: "UDPLed",
@@ -39,52 +38,52 @@ const NODECONFIG = {    UDPLED : {
         ],
         func : Serialled
     },
-    BEAT : {
-        name: "Beat",
-        input: [
+    /*   BEAT : {
+          name: "Beat",
+          input: [
 
-        ],
-        output: [
-            {name:"beat", type : "number", id:0}
-            //{name:"WIP Status", type : "number", id:0}
-        ],
-        args: [
-            {name:"AudioDevice", var:"audio_device", type : "number", value:10},
-            {name:"Sensitivity", var: "sensitivity", type : "number", value: 10}
-        ],
-        func : ()=>(1)
-    },
-    BEATMIXER : {
-        name: "BeatMixer",
-        input: [
-            {name:"Color", type : "ChromaScale", id:0, var: "data"},
-            {name:"beat", type : "number", id:1, var: "beat"}
-        ],
-        output: [
-            {name:"Color", type : "ChromaScale", id:0}
-            //{name:"WIP Status", type : "number", id:0}
-        ],
-        args: [
-            {name:"Factor", var:"fac", type : "number", value:10},
+          ],
+          output: [
+              {name:"beat", type : "number", id:0}
+              //{name:"WIP Status", type : "number", id:0}
+          ],
+          args: [
+              {name:"AudioDevice", var:"audio_device", type : "number", value:10},
+              {name:"Sensitivity", var: "sensitivity", type : "number", value: 10}
+          ],
+          func : ()=>(1)
+      },
+      BEATMIXER : {
+          name: "BeatMixer",
+          input: [
+              {name:"Color", type : "ChromaScale", id:0, var: "data"},
+              {name:"beat", type : "number", id:1, var: "beat"}
+          ],
+          output: [
+              {name:"Color", type : "ChromaScale", id:0}
+              //{name:"WIP Status", type : "number", id:0}
+          ],
+          args: [
+              {name:"Factor", var:"fac", type : "number", value:10},
 
-        ],
-        func : BeatMixer
-    },
-    AMBI : {
-        name: "Ambi",
-        input: [
+          ],
+          func : BeatMixer
+      },
+     AMBI : {
+          name: "Ambi",
+          input: [
 
-        ],
-        output: [
-            {name:"Color", type : "ChromaScale", id:0}
-        ],
-        args: [
-            {name:"Screen",var: "display", type : "number", value:1},
-            {name:"FPS", var:"fps", type : "number", value:20},
-            {name:"numPanel", var: "num_panel", type : "number", value: 8}
-        ],
-        func : Ambi
-    },
+          ],
+          output: [
+              {name:"Color", type : "ChromaScale", id:0}
+          ],
+          args: [
+              {name:"Screen",var: "display", type : "number", value:1},
+              {name:"FPS", var:"fps", type : "number", value:20},
+              {name:"numPanel", var: "num_panel", type : "number", value: 8}
+          ],
+          func : ""
+      },*/
     STATICCOLOR : {
         name: "StaticLedColor",
         input: [
@@ -124,9 +123,25 @@ const NODECONFIG = {    UDPLED : {
         ],
         args: [
             {name:"Updates",var: "data", type : "number", value:10},
+            {name:"Invert",var: "invert", type : "boolean", value: false},
 
         ],
         func : ColorRangeCycle
+    },
+    COLORRANGECROP : {
+        name: "ColorRangeCrop",
+        input: [
+            {name:"color", type : "ChromaScale", id:0, var: "data"}
+        ],
+        output: [
+            {name:"Color", type : "ChromaScale", id:0}
+        ],
+        args: [
+            {name:"Width",var: "width", type : "number", value:100},
+            {name:"Offset",var: "offset", type : "number", value: 0},
+            {name:"Invert",var: "invert", type : "boolean", value: false},
+        ],
+        func : ColorRangeCrop
     }
 
 
@@ -140,13 +155,20 @@ const save = (data)=>{
 
 class NodeManager{
 
-    constructor(SocketApi) {
+    constructor(SocketApi,name="test") {
         this.idc=0
         this.nodes={}
         this.connections=[]
         this.socketApi = SocketApi
         this.socketApi.nodeManager=this
+        this.name=name
     }
+
+    setRepository(rep){
+        this.repository=rep
+    }
+
+
     addNode(msg){
         let conf = NODECONFIG[msg.name]
         this.nodes[this.idc+conf.name]= new Node(conf.name, conf.input, conf.output, conf.args, conf.func)

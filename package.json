@@ -15,9 +15,8 @@
     "chroma-js": "^2.1.2",
     "express": "^4.17.1",
     "get-rgba-palette": "^2.0.1",
-    "sharp": "^0.29.3",
-    "socket.io": "^4.3.2",
-    "windows-desktop-duplication": "^1.0.3"
+    "socket.io": "^4.3.2"
+
   },
   "devDependencies": {
     "serialport": "^9.2.7",

@@ -22,6 +22,12 @@
 </html>
 <script src="/socket.io/socket.io.js"></script>
 <script>
+
+
+    document.getElementById("svg").setAttribute("height", window.innerHeight);
+    document.getElementById("svg").setAttribute("width", window.innerWidth);
+
+
     var check=false;1
     var counter = 0
     var socket = io();
@@ -48,7 +54,14 @@
         let a =document.getElementById(msg.id).children[0].children
         for(let e of a){
             if((e.classList[1]===msg.ioid)){
-                e.value=msg.value
+            msg.value= ( msg.value==="true")? true: msg.value
+                msg.value=  (msg.value==="false")? false: msg.value
+                if(typeof(msg.value)==='boolean' ){
+                    e.checked=msg.value
+                }
+                else {
+                    e.value = msg.value
+                }
             }
         }
     });
@@ -99,9 +112,10 @@
 let a = ele.children[0].children
         for(let e of a){
             if(e.localName==="input"){
-                e.addEventListener("change",()=>{
-                    console.log({id:ele.id, ioid:e.classList[1], value:e.value})
-                    socket.emit("ArgChange",{id:ele.id, ioid:e.classList[1], value:e.value})
+
+                e.addEventListener( "change",()=>{
+                    console.log({id:ele.id, ioid:e.classList[0], value: e.type==="checkbox"? e.checked : e.value})
+                    socket.emit("ArgChange",{id:ele.id, ioid: (e.type==="checkbox"? e.classList[0] : e.classList[1]), value: (e.type==="checkbox"? e.checked : e.value )})
                 })
 
             }
