@@ -1,14 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9bbbc3f1-e508-447f-af69-3bce1e16fa80" name="Changes" comment="SerialLed finally works">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ColorRangeCylce.js" beforeDir="false" afterPath="$PROJECT_DIR$/ColorRangeCylce.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HTMLNodeGen.js" beforeDir="false" afterPath="$PROJECT_DIR$/HTMLNodeGen.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nodes.js" beforeDir="false" afterPath="$PROJECT_DIR$/Nodes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SocketApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/SocketApi.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UDPled.js" beforeDir="false" afterPath="$PROJECT_DIR$/UDPled.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nodeManager.js" beforeDir="false" afterPath="$PROJECT_DIR$/nodeManager.js" afterDir="false" />
+    <list default="true" id="9bbbc3f1-e508-447f-af69-3bce1e16fa80" name="Changes" comment="changes">
+      <change afterPath="$PROJECT_DIR$/Timer.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -125,7 +119,7 @@
       <workItem from="1639299763625" duration="2447000" />
       <workItem from="1639437725101" duration="1800000" />
       <workItem from="1639494986812" duration="636000" />
-      <workItem from="1639573411863" duration="602000" />
+      <workItem from="1639573411863" duration="959000" />
     </task>
     <task id="LOCAL-00001" summary="1. commit">
       <created>1636559012550</created>
@@ -260,7 +254,14 @@
       <option name="project" value="LOCAL" />
       <updated>1638914535296</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="changes">
+      <created>1639578961515</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1639578961515</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -302,7 +303,8 @@
     <MESSAGE value="Added Templates for Nodes" />
     <MESSAGE value="Added save/load&#10;everything works now so far" />
     <MESSAGE value="SerialLed finally works" />
-    <option name="LAST_COMMIT_MESSAGE" value="SerialLed finally works" />
+    <MESSAGE value="changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="changes" />
   </component>
   <component name="WindowStateProjectService">
     <state x="873" y="359" width="814" height="728" key="#Intentions" timestamp="1638806454450">
