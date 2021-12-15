@@ -33,7 +33,7 @@ const NODECONFIG = {    UDPLED : {
         ],
         args: [
             {name:"Baudrate",var: "baudRate", type : "number", value:250000},
-            {name:"Port", var:"port", type : "String", value:"COM4"},
+            {name:"Port", var:"port", type : "String", value:"/dev/ttyACM0"},
             {name:"numLeds", var: "num_leds", type : "number", value: 70}
         ],
         func : Serialled
