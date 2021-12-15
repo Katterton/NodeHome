@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9bbbc3f1-e508-447f-af69-3bce1e16fa80" name="Changes" comment="Added save/load&#10;everything works now so far">
+    <list default="true" id="9bbbc3f1-e508-447f-af69-3bce1e16fa80" name="Changes" comment="SerialLed finally works">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ColorRangeCylce.js" beforeDir="false" afterPath="$PROJECT_DIR$/ColorRangeCylce.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SerialLed.js" beforeDir="false" afterPath="$PROJECT_DIR$/SerialLed.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTMLNodeGen.js" beforeDir="false" afterPath="$PROJECT_DIR$/HTMLNodeGen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Nodes.js" beforeDir="false" afterPath="$PROJECT_DIR$/Nodes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SocketApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/SocketApi.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UDPled.js" beforeDir="false" afterPath="$PROJECT_DIR$/UDPled.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nodeManager.js" beforeDir="false" afterPath="$PROJECT_DIR$/nodeManager.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,16 +56,16 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\david\WebstormProjects\NodeHome" />
-      <recent name="C:\Users\david\WebstormProjects\NodeHome\public" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\david\WebstormProjects\NodeHome" />
       <recent name="C:\Users\david\WebstormProjects\NodeHome\config" />
       <recent name="C:\Users\david\WebstormProjects\NodeHome\nodes\default" />
       <recent name="C:\Users\david\WebstormProjects\NodeHome\nodes\win" />
       <recent name="C:\Users\david\WebstormProjects\NodeHome\node_template" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\david\WebstormProjects\NodeHome" />
+      <recent name="C:\Users\david\WebstormProjects\NodeHome\public" />
     </key>
   </component>
   <component name="RunManager" selected="Node.js.main.js">
@@ -113,7 +117,15 @@
       <workItem from="1638626428159" duration="5414000" />
       <workItem from="1638717713817" duration="6657000" />
       <workItem from="1638800875630" duration="10793000" />
-      <workItem from="1638891602239" duration="9271000" />
+      <workItem from="1638891602239" duration="11048000" />
+      <workItem from="1638972297810" duration="1067000" />
+      <workItem from="1639044924734" duration="8526000" />
+      <workItem from="1639133339387" duration="1159000" />
+      <workItem from="1639218701454" duration="624000" />
+      <workItem from="1639299763625" duration="2447000" />
+      <workItem from="1639437725101" duration="1800000" />
+      <workItem from="1639494986812" duration="636000" />
+      <workItem from="1639573411863" duration="602000" />
     </task>
     <task id="LOCAL-00001" summary="1. commit">
       <created>1636559012550</created>
@@ -241,7 +253,14 @@
       <option name="project" value="LOCAL" />
       <updated>1638820424169</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="SerialLed finally works">
+      <created>1638914535296</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1638914535296</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -282,7 +301,8 @@
     <MESSAGE value="added removeNode" />
     <MESSAGE value="Added Templates for Nodes" />
     <MESSAGE value="Added save/load&#10;everything works now so far" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added save/load&#10;everything works now so far" />
+    <MESSAGE value="SerialLed finally works" />
+    <option name="LAST_COMMIT_MESSAGE" value="SerialLed finally works" />
   </component>
   <component name="WindowStateProjectService">
     <state x="873" y="359" width="814" height="728" key="#Intentions" timestamp="1638806454450">
@@ -293,38 +313,102 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="736" y="356" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.2560.1400/-1920.328.1920.1040@0.0.2560.1400" timestamp="1636630842217" />
-    <state x="332" y="269" width="1318" height="844" key="CommitChangelistDialog2" timestamp="1638820423492">
+    <state x="961" y="456" key="#org.exbin.bined.intellij.debug.DebugViewBinaryAction" timestamp="1639084784946">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="332" y="269" width="1318" height="844" key="CommitChangelistDialog2/0.0.2560.1400/-1920.328.1920.1040@0.0.2560.1400" timestamp="1638820423492" />
+    <state x="961" y="456" key="#org.exbin.bined.intellij.debug.DebugViewBinaryAction/0.0.2560.1400/-1920.328.1920.1040@0.0.2560.1400" timestamp="1639084784946" />
+    <state x="1181" y="454" key="#xdebugger.XInspectDialog" timestamp="1639084520974">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1181" y="454" key="#xdebugger.XInspectDialog/0.0.2560.1400/-1920.328.1920.1040@0.0.2560.1400" timestamp="1639084520974" />
+    <state x="1036" y="404" key="#xdebugger.evaluate" timestamp="1639084820676">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1036" y="404" key="#xdebugger.evaluate/0.0.2560.1400/-1920.328.1920.1040@0.0.2560.1400" timestamp="1639084820676" />
+    <state x="332" y="269" width="1318" height="844" key="CommitChangelistDialog2" timestamp="1638914534470">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="332" y="269" width="1318" height="844" key="CommitChangelistDialog2/0.0.2560.1400/-1920.328.1920.1040@0.0.2560.1400" timestamp="1638914534470" />
     <state x="1061" y="443" key="FileChooserDialogImpl" timestamp="1637596513997">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1061" y="443" key="FileChooserDialogImpl/0.0.2560.1400/-1920.328.1920.1040@0.0.2560.1400" timestamp="1637596513997" />
-    <state width="2539" height="459" key="GridCell.Tab.0.bottom" timestamp="1638914344007">
+    <state width="2539" height="348" key="GridCell.Tab.0.bottom" timestamp="1639309117844">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2539" height="459" key="GridCell.Tab.0.bottom/0.0.2560.1400/-1920.328.1920.1040@0.0.2560.1400" timestamp="1638914344007" />
-    <state width="2539" height="459" key="GridCell.Tab.0.center" timestamp="1638914344007">
+    <state width="2539" height="348" key="GridCell.Tab.0.bottom/0.0.2560.1400/-1920.328.1920.1040@0.0.2560.1400" timestamp="1639158934859" />
+    <state width="2539" height="348" key="GridCell.Tab.0.bottom/0.0.2560.1400/-1920.547.1920.1040@0.0.2560.1400" timestamp="1639309117844" />
+    <state width="2539" height="348" key="GridCell.Tab.0.center" timestamp="1639309117843">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2539" height="459" key="GridCell.Tab.0.center/0.0.2560.1400/-1920.328.1920.1040@0.0.2560.1400" timestamp="1638914344007" />
-    <state width="2539" height="459" key="GridCell.Tab.0.left" timestamp="1638914344007">
+    <state width="2539" height="348" key="GridCell.Tab.0.center/0.0.2560.1400/-1920.328.1920.1040@0.0.2560.1400" timestamp="1639158934859" />
+    <state width="2539" height="348" key="GridCell.Tab.0.center/0.0.2560.1400/-1920.547.1920.1040@0.0.2560.1400" timestamp="1639309117843" />
+    <state width="2539" height="348" key="GridCell.Tab.0.left" timestamp="1639309117842">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2539" height="459" key="GridCell.Tab.0.left/0.0.2560.1400/-1920.328.1920.1040@0.0.2560.1400" timestamp="1638914344007" />
-    <state width="2539" height="459" key="GridCell.Tab.0.right" timestamp="1638914344007">
+    <state width="2539" height="348" key="GridCell.Tab.0.left/0.0.2560.1400/-1920.328.1920.1040@0.0.2560.1400" timestamp="1639158934859" />
+    <state width="2539" height="348" key="GridCell.Tab.0.left/0.0.2560.1400/-1920.547.1920.1040@0.0.2560.1400" timestamp="1639309117842" />
+    <state width="2539" height="348" key="GridCell.Tab.0.right" timestamp="1639309117843">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2539" height="459" key="GridCell.Tab.0.right/0.0.2560.1400/-1920.328.1920.1040@0.0.2560.1400" timestamp="1638914344007" />
+    <state width="2539" height="348" key="GridCell.Tab.0.right/0.0.2560.1400/-1920.328.1920.1040@0.0.2560.1400" timestamp="1639158934859" />
+    <state width="2539" height="348" key="GridCell.Tab.0.right/0.0.2560.1400/-1920.547.1920.1040@0.0.2560.1400" timestamp="1639309117843" />
+    <state width="2539" height="483" key="GridCell.Tab.1.bottom" timestamp="1639085032271">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2539" height="483" key="GridCell.Tab.1.bottom/0.0.2560.1400/-1920.328.1920.1040@0.0.2560.1400" timestamp="1639085032271" />
+    <state width="2539" height="483" key="GridCell.Tab.1.center" timestamp="1639085032270">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2539" height="483" key="GridCell.Tab.1.center/0.0.2560.1400/-1920.328.1920.1040@0.0.2560.1400" timestamp="1639085032270" />
+    <state width="2539" height="483" key="GridCell.Tab.1.left" timestamp="1639085032270">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2539" height="483" key="GridCell.Tab.1.left/0.0.2560.1400/-1920.328.1920.1040@0.0.2560.1400" timestamp="1639085032270" />
+    <state width="2539" height="483" key="GridCell.Tab.1.right" timestamp="1639085032270">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2539" height="483" key="GridCell.Tab.1.right/0.0.2560.1400/-1920.328.1920.1040@0.0.2560.1400" timestamp="1639085032270" />
+    <state width="2539" height="483" key="GridCell.Tab.2.bottom" timestamp="1639085032271">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2539" height="483" key="GridCell.Tab.2.bottom/0.0.2560.1400/-1920.328.1920.1040@0.0.2560.1400" timestamp="1639085032271" />
+    <state width="2539" height="483" key="GridCell.Tab.2.center" timestamp="1639085032271">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2539" height="483" key="GridCell.Tab.2.center/0.0.2560.1400/-1920.328.1920.1040@0.0.2560.1400" timestamp="1639085032271" />
+    <state width="2539" height="483" key="GridCell.Tab.2.left" timestamp="1639085032271">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2539" height="483" key="GridCell.Tab.2.left/0.0.2560.1400/-1920.328.1920.1040@0.0.2560.1400" timestamp="1639085032271" />
+    <state width="2539" height="483" key="GridCell.Tab.2.right" timestamp="1639085032271">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2539" height="483" key="GridCell.Tab.2.right/0.0.2560.1400/-1920.328.1920.1040@0.0.2560.1400" timestamp="1639085032271" />
+    <state width="2539" height="483" key="GridCell.Tab.3.bottom" timestamp="1639085032272">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2539" height="483" key="GridCell.Tab.3.bottom/0.0.2560.1400/-1920.328.1920.1040@0.0.2560.1400" timestamp="1639085032272" />
+    <state width="2539" height="483" key="GridCell.Tab.3.center" timestamp="1639085032271">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2539" height="483" key="GridCell.Tab.3.center/0.0.2560.1400/-1920.328.1920.1040@0.0.2560.1400" timestamp="1639085032271" />
+    <state width="2539" height="483" key="GridCell.Tab.3.left" timestamp="1639085032271">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2539" height="483" key="GridCell.Tab.3.left/0.0.2560.1400/-1920.328.1920.1040@0.0.2560.1400" timestamp="1639085032271" />
+    <state width="2539" height="483" key="GridCell.Tab.3.right" timestamp="1639085032271">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2539" height="483" key="GridCell.Tab.3.right/0.0.2560.1400/-1920.328.1920.1040@0.0.2560.1400" timestamp="1639085032271" />
     <state x="1039" y="421" key="RollbackChangesDialog" timestamp="1638642736691">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1039" y="421" key="RollbackChangesDialog/0.0.2560.1400/-1920.328.1920.1040@0.0.2560.1400" timestamp="1638642736691" />
-    <state x="782" y="346" key="SettingsEditor" timestamp="1638724542655">
+    <state x="782" y="346" key="SettingsEditor" timestamp="1639158656326">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="782" y="346" key="SettingsEditor/0.0.2560.1400/-1920.328.1920.1040@0.0.2560.1400" timestamp="1638724542655" />
+    <state x="782" y="346" key="SettingsEditor/0.0.2560.1400/-1920.328.1920.1040@0.0.2560.1400" timestamp="1639158656326" />
     <state x="873" y="434" key="Vcs.Push.Dialog.v2" timestamp="1638820425671">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -341,23 +425,45 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="937" y="331" key="run.anything.popup/0.0.2560.1400/-1920.328.1920.1040@0.0.2560.1400" timestamp="1636728907336" />
-    <state x="943" y="315" width="672" height="678" key="search.everywhere.popup" timestamp="1637844765159">
+    <state x="943" y="315" width="672" height="678" key="search.everywhere.popup" timestamp="1639158713705">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="943" y="315" width="672" height="678" key="search.everywhere.popup/0.0.2560.1400/-1920.328.1920.1040@0.0.2560.1400" timestamp="1637844765159" />
+    <state x="943" y="315" width="672" height="678" key="search.everywhere.popup/0.0.2560.1400/-1920.328.1920.1040@0.0.2560.1400" timestamp="1639158713705" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/StaticLedColor.js</url>
-          <option name="timeStamp" value="2" />
+          <url>file://$PROJECT_DIR$/nodeManager.js</url>
+          <line>245</line>
+          <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/ColorRangeCylce.js</url>
-          <option name="timeStamp" value="3" />
+          <url>file://$PROJECT_DIR$/nodeManager.js</url>
+          <line>244</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/nodeManager.js</url>
+          <line>246</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/nodeManager.js</url>
+          <line>247</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/nodeManager.js</url>
+          <line>249</line>
+          <option name="timeStamp" value="8" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <watches-manager>
+      <configuration name="NodeJSConfigurationType">
+        <watch expression="this.nodes[&quot;0ColorRange&quot;].start" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>

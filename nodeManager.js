@@ -3,7 +3,7 @@ const UDPled = require("./UDPled.js")
 const Serialled = require("./SerialLed.js")
 
 const fs = require('fs');
-
+const Timer = require("./Timer.js")
 const StaticLedColor = require("./StaticLedColor.js")
 const ColorRange = require("./ColorRange.js")
 const ColorRangeCrop = require("./ColorRangeCrop.js")
@@ -142,7 +142,22 @@ const NODECONFIG = {    UDPLED : {
             {name:"Invert",var: "invert", type : "boolean", value: false},
         ],
         func : ColorRangeCrop
-    }
+    },
+    TIMER : {
+        name: "Timer",
+        input: [
+
+        ],
+        output: [
+            {name:"sstart", type : "boolean", id:0}
+        ],
+        args: [
+
+            {name:"Time",var: "time", type : "String", value: "11:00"},
+
+        ],
+        func : Timer
+    },
 
 
 }
@@ -173,12 +188,14 @@ class NodeManager{
         let conf = NODECONFIG[msg.name]
         this.nodes[this.idc+conf.name]= new Node(conf.name, conf.input, conf.output, conf.args, conf.func)
         this.nodes[this.idc+conf.name].id=this.idc
+        this.nodes[this.idc+conf.name].nodeManager=this
+        this.nodes[this.idc+conf.name].key=this.idc+conf.name
         this.socketApi.update()
         this.idc++
         save(this.serialize())
     }
     addConnection(con){
-        console.log(con)
+
         this.connections.push(con)
         this.socketApi.addConnection(this.connections)
         let inp = {}, outp={}
@@ -193,7 +210,7 @@ class NodeManager{
             }
 
         }
-        console.log("lol",inp, outp)
+
         inp.subscribe(outp)
         save(this.serialize())
     }
@@ -224,12 +241,14 @@ class NodeManager{
         return NODECONFIG
     }
     startNode(key){
-        console.log(key)
-        if(this.nodes[key].started) {
-            this.nodes[key].stop()
-        }
-        else{
-            this.nodes[key].start()
+
+        if(this.nodes[key].start!==undefined) {
+            if (this.nodes[key].started) {
+                this.nodes[key].stop()
+            } else {
+
+                this.nodes[key].start()
+            }
         }
         this.socketApi.update()
     }
@@ -247,6 +266,8 @@ class NodeManager{
             let conf = NODECONFIG[data[key].name.toUpperCase()]
             this.nodes[this.idc+conf.name] = new Node(conf.name, conf.input, conf.output, conf.args, conf.func)
             this.nodes[this.idc+conf.name].id = this.idc
+            this.nodes[this.idc+conf.name].nodeManager=this
+            this.nodes[this.idc+conf.name].key=this.idc+conf.name
             this.nodes[this.idc+conf.name].x=data[key].x
             this.nodes[this.idc+conf.name].y=data[key].y
             data[key].id=this.idc
@@ -265,7 +286,7 @@ class NodeManager{
             for (let input of data[key].input) {
                 if(input.name!=="start"){
                     if(input.output!==undefined) {
-                        console.log(data)
+
                         this.addConnection({output: input.output.id+input.output.name, input: data[key].id+input.name})
                     }
                 }

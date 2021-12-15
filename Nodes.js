@@ -1,4 +1,4 @@
-
+//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
 const parseHTML = require("./HTMLNodeGen.js")
 var idx = 0;
 
@@ -11,7 +11,7 @@ class Nodes {
     output = []
     args = []
     started = false
-    func = (node) => (console.log(node.input[0].data));
+    func = (node) => (0);
 
     constructor(name, input, output, args, func,id=undefined) {
         this.name = name
@@ -26,7 +26,7 @@ class Nodes {
             this.input.push(new Input(i, this))
         }
         if (this.input.length === 0) {
-            this.input.push(new Input({name: "Start", type: "boolean", id: 0, var: "start"}, this))
+            this.input.push(new Input({name: "Start", type: "boolean", id: 0, var: "sstart"}, this))
         }
         for (let i of output) {
 
@@ -69,12 +69,15 @@ remove(){
     if(this.func.start!==undefined){
         this.func.start()
         this.started=true
+   this.nodeManager.socketApi.update()
     }
+
     }
     stop(){
         if(this.func.start!==undefined){
             this.func.stop()
             this.started=false
+            this.nodeManager.socketApi.update()
         }
     }
     serialize(){
@@ -100,7 +103,9 @@ class Arguement{
     data = ""
     value = ""
 
+
     constructor(arg,node) {
+
         this.name= arg.name
         this.type= arg.type
         this.value = arg.value
@@ -135,9 +140,14 @@ class IO{
 
 class Input extends IO {
     output
-    constructor(input, node) {
+    constructor(input, node)
+    {
         super(input,node);
         this.io = "input"
+        if(this.name==="Start"){
+            node.func.update=()=>(1)
+
+        }
     }
 
     subscribe(output) {
@@ -160,17 +170,24 @@ if(this.output!==undefined) {
 
 
     update(data) {
-        if(this.name==="Start"){
-            if(data){
-                this.node.start()
-            }
-            else{
-                this.node.stop()
+
+        if(typeof this.node.start==="function") {
+            if (this.name === "Start") {
+                if (data) {
+
+                    this.node.start()
+                    this.node.started = true
+                } else {
+                    this.node.stop()
+                    this.node.started = false
+                }
             }
         }
         this.data = data
         this.node[this.var]=data
-        this.node.func.update(this.node)
+        if(this.node.func.update!==undefined) {
+            this.node.func.update(this.node)
+        }
 
     }
 }
@@ -192,6 +209,7 @@ class Output extends IO{
 }
     update(data){
         for(let i of this.inputs){
+
             i.update(data)
         }
     }

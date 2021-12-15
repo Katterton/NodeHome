@@ -6,7 +6,7 @@ function parseHTML(node){
 
 
         if(arg.type==="boolean"){
-            console.log(arg.value)
+            
             out += '<input id="' + node.id + arg.var + 'b"  name="options"  type="checkbox" class="' + arg.var + '" class="' + arg.var + '"  '+(arg.value? 'checked':'')+'><label class="form-check-label" for="' + node.id + arg.var + 'b">'+arg.name+'</label>'
         }
         else{

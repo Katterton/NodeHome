@@ -46,11 +46,11 @@ socket.on("connectNodes",(msg)=>{
            let n =  this.nodeManager.nodes[msg.id].args.find(x=>x.var===msg.ioid)
             if(n!==undefined){
             if(n.type==="boolean"){
-                console.log(msg.value)
+
                 n.update((msg.value))
             }
             else{
-                console.log(msg.value)
+
                 n.update(msg.value)
             }
 
@@ -63,7 +63,7 @@ this.nodeManager.removeConnection(msg.con)
         socket.on("removeNode",(msg)=>{
             this.nodeManager.deleteNode(msg.node)
         })
-        console.log('a user connected');
+
     });
 
     this.addConnection=function(cons){

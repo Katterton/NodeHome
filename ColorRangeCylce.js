@@ -5,8 +5,9 @@ class ColorRangeCycle{
         this.offset = 0
     }
     update(){
+        let data =this.node.data.data.colors(50)
 
-         this.node.send( {data: this.node.data.data.padding([0.1+this.offset, 0.6-this.offset]),brightness:1})
+         this.node.send( {data:chroma.scale(data).mode('lch').padding([0.1+this.offset, 0.6-this.offset]),brightness:1})
 if(this.interval===undefined){
     this.interval=setInterval(()=> {
 

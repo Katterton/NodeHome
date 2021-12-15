@@ -17,7 +17,7 @@ this.node=node
         this.node.num_leds=parseInt(this.node.num_leds)
         this.msg_parse(this.node.data.data.domain([0, this.node.num_leds]), this.node.data.brightness).then(async (msg) => {
 
-         console.log(this.node.ip)
+
         this.client.send(Buffer.from(msg), this.node.port, this.node.ip)
     })
     }
