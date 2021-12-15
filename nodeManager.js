@@ -285,9 +285,14 @@ class NodeManager{
             let conf = NODECONFIG[data[key].name.toUpperCase()]
             for (let input of data[key].input) {
                 if(input.name!=="start"){
-                    if(input.output!==undefined) {
+                    for(let o in input.output) {
+                        if (input.output[o] !== undefined) {
 
-                        this.addConnection({output: input.output.id+input.output.name, input: data[key].id+input.name})
+                            this.addConnection({
+                                output: input.output[o].id + input.output[o].name,
+                                input: data[key].id + input.name
+                            })
+                        }
                     }
                 }
             }

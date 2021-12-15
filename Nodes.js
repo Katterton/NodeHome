@@ -88,9 +88,15 @@ remove(){
        }
        out.input=[]
         for(let input of this.input){
-            out.input.push({name:input.name, id:input.id})
-            if(input.output!==undefined){
-                out.input[out.input.length-1].output={name:input.output.name, id:input.output.node.id, parent:{name:input.output.node.name, value: input.output.node.value}}
+            out.input.push({name:input.name, id:input.id, output : {}})
+            for(let o in input.output) {
+                if (input.output[o] !== undefined) {
+                    out.input[out.input.length - 1].output[o]={
+                        name: input.output[o].name,
+                        id: input.output[o].node.id,
+                        parent: {name: input.output[o].node.name, value: input.output[o].node.value}
+                    }
+                }
             }
         }
 
@@ -139,7 +145,7 @@ class IO{
 }
 
 class Input extends IO {
-    output
+    output= {}
     constructor(input, node)
     {
         super(input,node);
@@ -161,10 +167,12 @@ class Input extends IO {
     unsubscribe() {
 
 
-if(this.output!==undefined) {
-    this.output.removeListener(this)
-    this.output = undefined
-}
+        for(let o in this.output) {
+            if ( this.output[o] !== undefined) {
+                this.output[o].removeListener(this)
+                this.output[o] = undefined
+            }
+        }
 
     }
 
@@ -201,7 +209,7 @@ class Output extends IO{
 
     on(input){
         this.inputs.push(input)
-        input.output=this
+        input.output[this.name+this.node.id]=this
     }
     removeListener(input){
 
