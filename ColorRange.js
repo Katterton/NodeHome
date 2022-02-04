@@ -14,6 +14,7 @@ class ColorRange{
     }
     stop(){
         clearInterval(this.interval)
+        this.node.send( {data: chroma.scale([[0,0,0]]).mode('lch'),brightness:1})
     }
 
 
