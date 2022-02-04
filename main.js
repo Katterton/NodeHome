@@ -1,6 +1,6 @@
 var nodeManager = require("./nodeManager.js")
 var socketApi = require("./SocketApi.js")
-var frontendApi = require("./frontendApi.js")
+var frontendApi = require("./FrontendApi.js")
 var hng = require("./HTMLNodeGen")
 const fs = require('fs');
 let nM =new  nodeManager( socketApi(hng),frontendApi())
