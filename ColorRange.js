@@ -1,4 +1,5 @@
-const chroma = require("chroma-js")
+const chroma = require("chroma-js");
+const { set } = require("express/lib/application");
 class ColorRange{
     constructor(node) {
         this.node = node;
@@ -14,6 +15,7 @@ class ColorRange{
     }
     stop(){
         clearInterval(this.interval)
+        setTimeout(()=>this.node.send( {data: chroma.scale([[0,0,0]]).mode('lch'),brightness:1}),100)
         this.node.send( {data: chroma.scale([[0,0,0]]).mode('lch'),brightness:1})
     }
 
