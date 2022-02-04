@@ -8,7 +8,7 @@ class ColorRange{
 
         this.interval=setInterval(()=> {
 
-            this.node.send( {data: chroma.scale([...JSON.parse(this.node.data)]).mode('lch'),brightness:1})},100)
+            this.node.send( {data: chroma.scale([...JSON.parse(this.node.data)]).mode('lch'),brightness:1})},10)
 
 
     }

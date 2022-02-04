@@ -6,8 +6,10 @@ const fs = require('fs');
 const Timer = require("./Timer.js")
 const StaticLedColor = require("./StaticLedColor.js")
 const ColorRange = require("./ColorRange.js")
+const ColorRangeRandom = require("./ColorRangeRandom.js")
 const ColorRangeCrop = require("./ColorRangeCrop.js")
 const ColorRangeCycle = require("./ColorRangeCylce.js")
+const ColorRangeShift = require("./ColorRangeShift.js")
 const NODECONFIG = {    UDPLED : {
         name: "UDPLed",
         input: [
@@ -113,6 +115,20 @@ const NODECONFIG = {    UDPLED : {
         ],
         func : ColorRange
     },
+    COLORRANGERANDOM : {
+        name: "ColorRangeRandom",
+        input: [
+
+        ],
+        output: [
+            {name:"Color", type : "ChromaScale", id:0}
+        ],
+        args: [
+          
+
+        ],
+        func : ColorRangeRandom,
+    },
     COLORRANGECYCLE : {
         name: "ColorRangeCycle",
         input: [
@@ -127,6 +143,19 @@ const NODECONFIG = {    UDPLED : {
 
         ],
         func : ColorRangeCycle
+    },
+    COLORRANGESHIFT : {
+        name: "ColorRangeShift",
+        input: [
+            {name:"color", type : "ChromaScale", id:0, var: "data"}
+        ],
+        output: [
+            {name:"Color", type : "ChromaScale", id:0}
+        ],
+        args: [
+            {name:"Updates",var: "data", type : "number", value:1000},
+        ],
+        func : ColorRangeShift
     },
     COLORRANGECROP : {
         name: "ColorRangeCrop",
@@ -170,11 +199,13 @@ const save = (data)=>{
 
 class NodeManager{
 
-    constructor(SocketApi,name="test") {
+    constructor(SocketApi,FrontendApi,name="test") {
         this.idc=0
         this.nodes={}
         this.connections=[]
         this.socketApi = SocketApi
+        this.FrontendApi = FrontendApi
+        this.FrontendApi.nodeManager=this
         this.socketApi.nodeManager=this
         this.name=name
     }
@@ -233,6 +264,7 @@ class NodeManager{
                this.nodes[key].remove()
                delete this.nodes[key]
                this.socketApi.update()
+               this.FrontendApi.updat()
            }
        }
         save(this.serialize())
@@ -251,6 +283,7 @@ class NodeManager{
             }
         }
         this.socketApi.update()
+        this.FrontendApi.updat()
     }
     serialize() {
         let out = {}

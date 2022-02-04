@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
 
     <link href="dist/css/bootstrap-colorpicker.css" rel="stylesheet">
     <script src="dist/js/bootstrap-colorpicker.js"></script>
@@ -14,11 +18,17 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
+
 <body id="a">
-<div id='rightmenu' style='position:absolute; z-index: 10; visibility:hidden; left:0px; top:0px'><ul class='list-group'> <a href='#' class='list-group-item list-group-item-action list-group-item-danger'>Remove Connection</a></ul></div>
-<div id="add"></div>
-<svg id="svg" style="z-index: 5;"  width="1000" height="1000"></svg><div id = "Nodes"></div>
+    <div id='rightmenu' style='position:absolute; z-index: 10; visibility:hidden; left:0px; top:0px'>
+        <ul class='list-group'> <a href='#' class='list-group-item list-group-item-action list-group-item-danger'>Remove
+                Connection</a></ul>
+    </div>
+    <div id="add"></div>
+    <svg id="svg" style="z-index: 5;" width="1000" height="1000"></svg>
+    <div id="Nodes"></div>
 </body>
+
 </html>
 <script src="/socket.io/socket.io.js"></script>
 <script>
@@ -28,36 +38,36 @@
     document.getElementById("svg").setAttribute("width", window.innerWidth);
 
 
-    var check=false;1
+    var check = false; 1
     var counter = 0
     var socket = io();
     var config = {}
-    var connections=[]
-    var picker ={}
+    var connections = []
+    var picker = {}
 
-    socket.on('setConfig', function(msg) {
-       config=msg
+    socket.on('setConfig', function (msg) {
+        config = msg
         console.log(config)
         let ele = document.getElementById("add")
-        ele.innerHTML=""
-        for (let c in config){
+        ele.innerHTML = ""
+        for (let c in config) {
             //pls improve me
-            ele.innerHTML+="<button id='add"+config[c].name+"'>Add "+config[c].name+"</button>"
+            ele.innerHTML += "<button id='add" + config[c].name + "'>Add " + config[c].name + "</button>"
         }
-        for (let c in config){
-            document.getElementById("add"+config[c].name).addEventListener("click",()=>{
-                socket.emit("addNode",{name:c})
+        for (let c in config) {
+            document.getElementById("add" + config[c].name).addEventListener("click", () => {
+                socket.emit("addNode", { name: c })
             })
         }
     });
-    socket.on('ArgChange', function(msg) {
-        let a =document.getElementById(msg.id).children[0].children
-        for(let e of a){
-            if((e.classList[1]===msg.ioid)){
-            msg.value= ( msg.value==="true")? true: msg.value
-                msg.value=  (msg.value==="false")? false: msg.value
-                if(typeof(msg.value)==='boolean' ){
-                    e.checked=msg.value
+    socket.on('ArgChange', function (msg) {
+        let a = document.getElementById(msg.id).children[0].children
+        for (let e of a) {
+            if ((e.classList[1] === msg.ioid)) {
+                msg.value = (msg.value === "true") ? true : msg.value
+                msg.value = (msg.value === "false") ? false : msg.value
+                if (typeof (msg.value) === 'boolean') {
+                    e.checked = msg.value
                 }
                 else {
                     e.value = msg.value
@@ -65,37 +75,37 @@
             }
         }
     });
-    socket.on("NodePositionChange", function(msg) {
+    socket.on("NodePositionChange", function (msg) {
         console.log(msg)
-        if(!check) {
+        if (!check) {
             document.getElementById(msg.id).style.left = msg.x + "px"
             document.getElementById(msg.id).style.top = msg.y + "px"
         }
         renderConnections()
     });
 
-    socket.on('connectNodes', function(msg) {
-    connections=msg
+    socket.on('connectNodes', function (msg) {
+        connections = msg
         renderConnections()
     })
 
-    socket.on('update', function(msg) {
+    socket.on('update', function (msg) {
         console.log(msg)
         document.getElementById("Nodes").innerHTML = ""
 
-        for(let node of msg) {
-            document.getElementById("Nodes").innerHTML +=node.html
+        for (let node of msg) {
+            document.getElementById("Nodes").innerHTML += node.html
 
         }
-        for(let node of msg) {
-             makeDraggable(document.getElementById(node.id))
+        for (let node of msg) {
+            makeDraggable(document.getElementById(node.id))
             addArgListener(document.getElementById(node.id))
             addStartListener(document.getElementById(node.id))
             addCloseListener(document.getElementById(node.id))
-            let io = document.getElementById(node.id).children[0].children[document.getElementById(node.id).children[0].children.length-1].children
+            let io = document.getElementById(node.id).children[0].children[document.getElementById(node.id).children[0].children.length - 1].children
             console.log(io)
 
-            for(let out of io) {
+            for (let out of io) {
                 if (out.children[1].children[0] !== undefined) {
 
                     makeConnectable(out.children[1].children[0].children[1].children[0])
@@ -107,41 +117,41 @@
 
 
 
-    function addArgListener(ele){
+    function addArgListener(ele) {
 
-let a = ele.children[0].children
-        for(let e of a){
-            if(e.localName==="input"){
+        let a = ele.children[0].children
+        for (let e of a) {
+            if (e.localName === "input") {
 
-                e.addEventListener( "change",()=>{
-                    console.log({id:ele.id, ioid:e.classList[0], value: e.type==="checkbox"? e.checked : e.value})
-                    socket.emit("ArgChange",{id:ele.id, ioid: (e.type==="checkbox"? e.classList[0] : e.classList[1]), value: (e.type==="checkbox"? e.checked : e.value )})
+                e.addEventListener("change", () => {
+                    console.log({ id: ele.id, ioid: e.classList[0], value: e.type === "checkbox" ? e.checked : e.value })
+                    socket.emit("ArgChange", { id: ele.id, ioid: (e.type === "checkbox" ? e.classList[0] : e.classList[1]), value: (e.type === "checkbox" ? e.checked : e.value) })
                 })
 
             }
-            if(e.classList[1]==='picker') {
+            if (e.classList[1] === 'picker') {
                 console.log(e)
                 if (picker[e.id] !== undefined) {
-                    console.log( $("#" + e.id))
+                    console.log($("#" + e.id))
 
 
                 }
                 picker[e.id] = $("#" + e.id).colorpicker()
                 setTimeout(function () {
 
-console.log( $("#" + e.id))
+                    console.log($("#" + e.id))
                     $("#" + e.id).on("change", function (b) {
                         let range = document.getElementById(e.classList[2])
                         let value = JSON.parse(range.value)
 
-                        let out =  b.color.toString().slice(4).slice(0,-1)
-                             out = JSON.parse("["+out+"]")
-                        value[parseInt(e.classList[3])]=out
-                        range.value=JSON.stringify(value)
-                        socket.emit("ArgChange",{id:ele.id, ioid:range.classList[1], value:range.value})
+                        let out = b.color.toString().slice(4).slice(0, -1)
+                        out = JSON.parse("[" + out + "]")
+                        value[parseInt(e.classList[3])] = out
+                        range.value = JSON.stringify(value)
+                        socket.emit("ArgChange", { id: ele.id, ioid: range.classList[1], value: range.value })
                         console.log(out)
                     })
-                },5)
+                }, 5)
             }
 
         }
@@ -149,39 +159,39 @@ console.log( $("#" + e.id))
 
 
 
-    function addStartListener(ele){
-        if(document.getElementById(ele.id+"start")) {
-            document.getElementById(ele.id+"start").addEventListener("click", function () {
-                socket.emit("startNode",{id:ele.id})
+    function addStartListener(ele) {
+        if (document.getElementById(ele.id + "start")) {
+            document.getElementById(ele.id + "start").addEventListener("click", function () {
+                socket.emit("startNode", { id: ele.id })
             })
         }
     }
-    function addCloseListener(ele){
-        if(document.getElementById(ele.id+"del")) {
-            document.getElementById(ele.id+"del").addEventListener("click", function () {
-                socket.emit("removeNode",{node:ele.id})
+    function addCloseListener(ele) {
+        if (document.getElementById(ele.id + "del")) {
+            document.getElementById(ele.id + "del").addEventListener("click", function () {
+                socket.emit("removeNode", { node: ele.id })
             })
         }
     }
-    function makeDraggable(ele){
+    function makeDraggable(ele) {
 
 
-        ele._pos={pos1:0, pos2:0, pos3:0,pos4:0}
-            ele.onmousedown = dragMouseDown;
+        ele._pos = { pos1: 0, pos2: 0, pos3: 0, pos4: 0 }
+        ele.onmousedown = dragMouseDown;
 
-            function dragMouseDown(e) {
+        function dragMouseDown(e) {
 
 
-                if(e.target.localName!=="input" && e.target.localName!=="circle" &&  e.target.localName!=="svg" &&  e.target.localName!=="button" && e.target.localName!=="delete") {
-                    e = e || window.event;
+            if (e.target.localName !== "input" && e.target.localName !== "circle" && e.target.localName !== "svg" && e.target.localName !== "button" && e.target.localName !== "delete") {
+                e = e || window.event;
                 e.preventDefault();
-                ele._pos.pos3 =e.clientX;
-                ele._pos.pos4 =e.clientY;
-                    document.onmouseup = closeDragElement;
-                    document.onmousemove = elementDrag;
-check=true
-              }
+                ele._pos.pos3 = e.clientX;
+                ele._pos.pos4 = e.clientY;
+                document.onmouseup = closeDragElement;
+                document.onmousemove = elementDrag;
+                check = true
             }
+        }
         function elementDrag(e) {
             e = e || window.event;
             e.preventDefault();
@@ -192,55 +202,55 @@ check=true
             ele._pos.pos4 = e.clientY;
 
 
-           ele.style.left =(ele.offsetLeft - ele._pos.pos1)+"px"
-            ele.style.top =(ele.offsetTop - ele._pos.pos2)+"px"
-           if(counter>5) {
-               socket.emit("NodePositionChange", {
-                   id: ele.id,
-                   x: (ele.offsetLeft - ele._pos.pos1),
-                   y: (ele.offsetTop - ele._pos.pos2)
-               })
-               counter=0
-           }
-           counter++;
-           }
+            ele.style.left = (ele.offsetLeft - ele._pos.pos1) + "px"
+            ele.style.top = (ele.offsetTop - ele._pos.pos2) + "px"
+            if (counter > 5) {
+                socket.emit("NodePositionChange", {
+                    id: ele.id,
+                    x: (ele.offsetLeft - ele._pos.pos1),
+                    y: (ele.offsetTop - ele._pos.pos2)
+                })
+                counter = 0
+            }
+            counter++;
+        }
 
         function closeDragElement() {
-            check=false
-            socket.emit("NodePositionChange",{id:ele.id, x:(ele.offsetLeft - ele._pos.pos1),y:(ele.offsetTop - ele._pos.pos2)})
+            check = false
+            socket.emit("NodePositionChange", { id: ele.id, x: (ele.offsetLeft - ele._pos.pos1), y: (ele.offsetTop - ele._pos.pos2) })
 
             document.onmouseup = null;
             document.onmousemove = null;
         }
     }
 
-function makeConnectable(ele){
-    ele._pos={pos1:0, pos2:0, pos3:0,pos4:0}
-    ele.onmousedown = dragMouseDown;
+    function makeConnectable(ele) {
+        ele._pos = { pos1: 0, pos2: 0, pos3: 0, pos4: 0 }
+        ele.onmousedown = dragMouseDown;
 
-    function preview(e){
-
-
-        ele._pos.pos3 = parseInt(e.clientX);
-        ele._pos.pos4 = parseInt(e.clientY);
-        let iny= ele._pos.pos4-30;
-
-        let inx = ele._pos.pos3
-       // let out = document.getElementById(node.id + "_" + node.output[outputName].name)
-
-        let outRect = ele.getBoundingClientRect()
-        let outx = outRect.x
-        let outy = outRect.y + Math.floor(outRect.height / 2)-30
+        function preview(e) {
 
 
-        let avgx = (inx + outx) / 2
-        let avgy = (iny + outy) / 2
-        renderConnections()
-        document.getElementById("svg").innerHTML += "<path  d='M" + outx + " " + outy + " Q " + (avgx+outx)/2 + " " + outy + ", " + avgx + " " + avgy + " T " + inx + " " + iny + "' stroke='black' fill='transparent'>" //' <path x1="' + inx + '" y1="' + iny + '" x2="' + outx + '" y2="' + outy + '" style="stroke: black;z-index: 5">'
+            ele._pos.pos3 = parseInt(e.clientX);
+            ele._pos.pos4 = parseInt(e.clientY);
+            let iny = ele._pos.pos4 - 30;
 
-    }
-    function dragMouseDown(e) {
-        console.log(e)
+            let inx = ele._pos.pos3
+            // let out = document.getElementById(node.id + "_" + node.output[outputName].name)
+
+            let outRect = ele.getBoundingClientRect()
+            let outx = outRect.x
+            let outy = outRect.y + Math.floor(outRect.height / 2) - 30
+
+
+            let avgx = (inx + outx) / 2
+            let avgy = (iny + outy) / 2
+            renderConnections()
+            document.getElementById("svg").innerHTML += "<path  d='M" + outx + " " + outy + " Q " + (avgx + outx) / 2 + " " + outy + ", " + avgx + " " + avgy + " T " + inx + " " + iny + "' stroke='black' fill='transparent'>" //' <path x1="' + inx + '" y1="' + iny + '" x2="' + outx + '" y2="' + outy + '" style="stroke: black;z-index: 5">'
+
+        }
+        function dragMouseDown(e) {
+            console.log(e)
 
             e = e || window.event;
             ele._pos.pos3 = parseInt(e.clientX);
@@ -251,84 +261,84 @@ function makeConnectable(ele){
 
 
             document.onmouseup = closeDragElement;
-            document.onmousemove= preview
+            document.onmousemove = preview
             return false;
 
 
 
-    }
+        }
 
-    function closeDragElement(e) {
-        if (e.target.classList.contains("in")) {
-            let p=e.target
-            if(e.target.id===""){
-                p=e.target.parentElement
+        function closeDragElement(e) {
+            if (e.target.classList.contains("in")) {
+                let p = e.target
+                if (e.target.id === "") {
+                    p = e.target.parentElement
+                }
+
+                socket.emit("connectNodes", { output: ele.id, input: p.id })
+                console.log({ output: ele, input: p })
+
             }
 
-            socket.emit("connectNodes", {output:ele.id,input:p.id})
-console.log({output:ele,input:p})
-
+            document.onmouseup = null;
+            document.onmousemove = null;
+            renderConnections()
         }
 
-        document.onmouseup = null;
-        document.onmousemove = null;
-        renderConnections()
     }
-
-}
-function renderConnections(ele="svg"){
+    function renderConnections(ele = "svg") {
         let svg = document.getElementById(ele)
-    svg.innerHTML=""
-    for(let con of connections) {
-        let out = document.getElementById(con.output)
-        let In = document.getElementById(con.input)
-        console.log(con.output)
-        if (out !== null && In !==null) {
-            let outRect = out.getBoundingClientRect()
-            let outx = outRect.x
-            let outy = outRect.y + Math.floor(outRect.height / 2) - 30
+        svg.innerHTML = ""
+        for (let con of connections) {
+            let out = document.getElementById(con.output)
+            let In = document.getElementById(con.input)
+            console.log(con.output)
+            if (out !== null && In !== null) {
+                let outRect = out.getBoundingClientRect()
+                let outx = outRect.x
+                let outy = outRect.y + Math.floor(outRect.height / 2) - 30
 
 
 
-            let inRect = In.getBoundingClientRect()
-            let inx = inRect.x
-            let iny = inRect.y + Math.floor(inRect.height / 2) - 30
-            let avgx = (inx + outx) / 2
-            let avgy = (iny + outy) / 2
+                let inRect = In.getBoundingClientRect()
+                let inx = inRect.x
+                let iny = inRect.y + Math.floor(inRect.height / 2) - 30
+                let avgx = (inx + outx) / 2
+                let avgy = (iny + outy) / 2
 
 
-            svg.innerHTML += "<path id='con" + con.input + con.output + "' d='M" + outx + " " + outy + " Q " + (avgx + outx) / 2 + " " + outy + ", " + avgx + " " + avgy + " T " + inx + " " + iny + "' stroke='black' fill='transparent'>"
+                svg.innerHTML += "<path id='con" + con.input + con.output + "' d='M" + outx + " " + outy + " Q " + (avgx + outx) / 2 + " " + outy + ", " + avgx + " " + avgy + " T " + inx + " " + iny + "' stroke='black' fill='transparent'>"
+            }
         }
+        setTimeout(() => {
+            for (let con of connections) {
+                if (document.getElementById("con" + con.input + con.output) !== null) {
+                    document.getElementById("con" + con.input + con.output).addEventListener('contextmenu', function (ev) {
+                        ev.preventDefault();
+                        openRightMenu(ev, con)
+                        return false;
+                    }, false);
+                }
+            }
+        }, 5
+        )
     }
-    setTimeout(()=>{
-    for(let con of connections) {
-        if (document.getElementById("con" + con.input + con.output) !== null) {
-            document.getElementById("con" + con.input + con.output).addEventListener('contextmenu', function (ev) {
-                ev.preventDefault();
-                openRightMenu(ev, con)
-                return false;
-            }, false);
-        }
-    }
-},5
-    )
-}
 
-function openRightMenu(ev, con) {
+    function openRightMenu(ev, con) {
 
 
 
-    document.getElementById("rightmenu").style.left=ev.clientX+"px"
-    document.getElementById("rightmenu").style.top= ev.clientY+"px"
-    document.getElementById("rightmenu").style.visibility= "visible"
-    selectedCon=con
+        document.getElementById("rightmenu").style.left = ev.clientX + "px"
+        document.getElementById("rightmenu").style.top = ev.clientY + "px"
+        document.getElementById("rightmenu").style.visibility = "visible"
+        selectedCon = con
 
     }
     var selectedCon;
     document.getElementById("a").addEventListener("mousedown", function (e) {
-        if(document.getElementById("rightmenu").style.visibility==="visible") {
+        if (document.getElementById("rightmenu").style.visibility === "visible") {
             if (e.target.localName === "a") {
-                socket.emit("removeConnection", {con: selectedCon})
+                socket.emit("removeConnection", { con: selectedCon })
             }
             document.getElementById("rightmenu").style.visibility = "hidden"
             // document.getElementById("rightmenu").remove()
@@ -342,4 +352,4 @@ function openRightMenu(ev, con) {
 
 
 
-    </script>
+</script>

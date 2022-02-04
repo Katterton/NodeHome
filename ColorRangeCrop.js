@@ -3,6 +3,8 @@ class ColorRangeCrop //Class Name
 {
     constructor(node) {
         this.node = node
+       
+
         //Optional: Insert Code for Node Startup
     }
     update(){
