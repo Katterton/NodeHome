@@ -20,13 +20,36 @@
 </head>
 
 <body id="a">
+   
     <div id='rightmenu' style='position:absolute; z-index: 10; visibility:hidden; left:0px; top:0px'>
         <ul class='list-group'> <a href='#' class='list-group-item list-group-item-action list-group-item-danger'>Remove
                 Connection</a></ul>
     </div>
-    <div id="add"></div>
+  
+
     <svg id="svg" style="z-index: 5;" width="1000" height="1000"></svg>
     <div id="Nodes"></div>
+    <div class="card" style="bottom:-25%; position:absolute; width: 90%; left:5%; height:25%; z-index: 2;" id="addMenu">
+        <div class="card-body">
+            <div id="closeAddMenu" style="position: absolute; left: 50%">X</div>
+            <div id="add"  class="btn-group" role="group"  style="margin-top:1.5%; width:100%"></div>
+        </div>
+      </div>
+    <svg version="1.0" x="0px" y="0px" xmlns="http://www.w3.org/2000/svg" style="position: absolute;bottom:2%; left:50%; " width="64px" height="64px" viewBox="0 0 960 960" id="buttonAdd">
+    	<g id="blender_frame_33">
+            <g id="blender_object_GPencil">
+                <!--Layer: Plane_Lines-->
+                <g id="Plane_Lines">
+                    <polyline stroke="#198753" stroke-opacity="1" fill="none" stroke-linecap="round" stroke-width="10.2145996" points="430.247070,430.247131 192.913330,430.247131 182.731323,432.272522 174.099365,438.040100 168.331543,446.672180 166.306274,456.854309 166.306274,503.826782 168.331543,514.008911 174.099365,522.640930 182.731323,528.408630 192.913330,530.433960 430.247070,530.433960" />
+                    <polyline stroke="#198753" stroke-opacity="1" fill="none" stroke-linecap="round" stroke-width="10.2145996" points="430.247070,530.433960 430.247070,767.094238 432.272461,777.276367 438.040161,785.908447 446.672119,791.676147 456.854248,793.701416 503.826782,793.701416 514.008911,791.676147 522.640869,785.908447 528.408691,777.276367 530.433960,767.094238 530.433960,530.433960" />
+                    <polyline stroke="#198753" stroke-opacity="1" fill="none" stroke-linecap="round" stroke-width="10.2145996" points="530.433960,530.433960 765.074341,530.433960 775.256470,528.408630 783.888550,522.640930 789.656128,514.008911 791.681396,503.826782 791.681396,456.854309 789.656128,446.672180 783.888550,438.040100 775.256470,432.272522 765.074341,430.247131 530.433960,430.247131" />
+                    <polyline stroke="#198753" stroke-opacity="1" fill="none" stroke-linecap="round" stroke-width="10.2145996" points="530.433960,430.247131 530.433960,194.260132 528.408691,184.078003 522.640869,175.445923 514.008911,169.678223 503.826782,167.652832 456.854248,167.652832 446.672119,169.678223 438.040161,175.445923 432.272461,184.078003 430.247070,194.260132 430.247070,430.247131" />
+                    <polyline stroke="#198753" stroke-opacity="1" fill="none" stroke-linecap="round" stroke-width="10.2145996" points="870.798096,100.495728 872.290894,108.000122 872.290894,852.680908 870.798096,860.185425 866.547363,866.547363 860.185303,870.798218 852.680786,872.291016 108.000122,872.291016 100.495605,870.798218 94.133667,866.547363 89.882935,860.185425 88.390137,852.680908 88.390137,108.000122 89.882935,100.495728 94.133667,94.133789 100.495605,89.882812 108.000122,88.390137 852.680786,88.390137 860.185303,89.882812 866.547363,94.133789 870.798096,100.495728" />
+                    <polyline stroke="#198753" stroke-opacity="1" fill="none" stroke-linecap="round" stroke-width="10.2145996" points="950.680908,29.609985 949.188232,22.105591 944.937378,15.743530 938.575439,11.492676 931.071045,10.000000 29.609985,10.000000 22.105591,11.492676 15.743530,15.743530 11.492676,22.105591 10.000000,29.609985 10.000000,931.071045 11.492676,938.575439 15.743530,944.937500 22.105591,949.188354 29.609985,950.681030 931.071045,950.681030 938.575439,949.188354 944.937378,944.937500 949.188232,938.575439 950.680908,931.071045 950.680908,29.609985" />
+                </g>
+            </g>
+        </g>
+    </svg>
 </body>
 
 </html>
@@ -52,7 +75,7 @@
         ele.innerHTML = ""
         for (let c in config) {
             //pls improve me
-            ele.innerHTML += "<button id='add" + config[c].name + "'>Add " + config[c].name + "</button>"
+            ele.innerHTML += "<button type='button' class='btn btn-outline-success ' id='add" + config[c].name + "'>" + config[c].name + "</button>"
         }
         for (let c in config) {
             document.getElementById("add" + config[c].name).addEventListener("click", () => {
@@ -240,7 +263,7 @@
 
             let outRect = ele.getBoundingClientRect()
             let outx = outRect.x
-            let outy = outRect.y + Math.floor(outRect.height / 2) - 30
+            let outy = outRect.y + Math.floor(outRect.height / 2) 
 
 
             let avgx = (inx + outx) / 2
@@ -296,13 +319,13 @@
             if (out !== null && In !== null) {
                 let outRect = out.getBoundingClientRect()
                 let outx = outRect.x
-                let outy = outRect.y + Math.floor(outRect.height / 2) - 30
+                let outy = outRect.y + Math.floor(outRect.height / 2) 
 
 
 
                 let inRect = In.getBoundingClientRect()
                 let inx = inRect.x
-                let iny = inRect.y + Math.floor(inRect.height / 2) - 30
+                let iny = inRect.y + Math.floor(inRect.height / 2)  
                 let avgx = (inx + outx) / 2
                 let avgy = (iny + outy) / 2
 
@@ -348,8 +371,45 @@
 
 
     })
-
-
+    var id = null;
+function showAddMenu(){
+    let ele = document.getElementById("addMenu")
+    ele.style.bottom = -25 + '%'; 
+    var pos = -25;
+  clearInterval(id);
+  id = setInterval(frame, 5);
+  function frame() {
+    if (pos == 0) {
+      clearInterval(id);
+    } else {
+      pos+=0.5; 
+      ele.style.bottom = pos + '%'; 
+   
+    }
+  }
+}
+function closeAddMenu(){
+    let ele = document.getElementById("addMenu")
+    ele.style.bottom = 0 + '%'; 
+    var pos = 0;
+  clearInterval(id);
+  id = setInterval(frame, 5);
+  function frame() {
+    if (pos == -25) {
+      clearInterval(id);
+    } else {
+      pos-=0.5; 
+      ele.style.bottom = pos + '%'; 
+   
+    }
+  }
+}
+document.getElementById("buttonAdd").addEventListener("click", function (e) {
+    showAddMenu()
+})
+document.getElementById("closeAddMenu").addEventListener("click", function (e) {
+   closeAddMenu()
+})
 
 
 </script>
