@@ -1,7 +1,7 @@
 var Node = require("./Nodes.js")
 const UDPled = require("./UDPled.js")
 const Serialled = require("./SerialLed.js")
-
+const UDPledV2 = require("./UDPledV2.js")
 const fs = require('fs');
 const Timer = require("./Timer.js")
 const StaticLedColor = require("./StaticLedColor.js")
@@ -24,6 +24,21 @@ const NODECONFIG = {    UDPLED : {
             {name:"numLeds", var: "num_leds", type : "number", value: 70}
         ],
         func : UDPled
+    },
+    UDPLEDV2 : {
+        name: "UDPLedV2",
+        input: [
+            {name:"Color", type : "ChromaScale", id:0, var: "data"}
+        ],
+        output: [
+            //{name:"WIP Status", type : "number", id:0}
+        ],
+        args: [
+            {name:"IP",var: "ip", type : "String", value:"192.168.0.105"},
+            {name:"Port", var:"port", type : "number", value:4210},
+            {name:"numLeds", var: "num_leds", type : "number", value: 70}
+        ],
+        func : UDPledV2
     },
     SERIALLED : {
         name: "SerialLed",
@@ -254,6 +269,11 @@ class NodeManager{
             }
         }
 
+        this.socketApi.update()
+        save(this.serialize())
+    }
+    renameNode(msg){
+        this.nodes[msg.key].name=msg.name
         this.socketApi.update()
         save(this.serialize())
     }

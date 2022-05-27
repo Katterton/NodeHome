@@ -14,7 +14,6 @@ function FrontendApi() {
     io.on('connection', (socket) => {
      let out = Object.values(this.nodeManager.nodes).filter(x=>x.input.some(y=>y.name==="Start")).map(x=>({id: x.id, name:x.name, state:x.started}))
  
-    
     console.log(out)
     if(out.length>0){
        socket.emit("init", out)

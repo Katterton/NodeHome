@@ -3,7 +3,9 @@
     margin-left: 5%;
     width: 70%;
 }
-
+.rt {
+   margin-left: 100px;
+}
 .node {
     background: #171922;
     position: absolute;

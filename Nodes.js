@@ -48,6 +48,9 @@ class Nodes {
             }
     }
 }
+rename(name){  this.name=name}
+
+
 remove(){
         for(let input of this.input){
             input.unsubscribe()

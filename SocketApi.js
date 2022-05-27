@@ -34,7 +34,9 @@ socket.on("startNode", (msg)=>{
 socket.on("connectNodes",(msg)=>{
             nodeManager.addConnection(msg)
         })
-
+socket.on("renameNode",(msg)=>{
+    nodeManager.renameNode(msg)
+})
         socket.on("NodePositionChange",(msg)=>{
             this.nodeManager.nodes[msg.id].x=msg.x
             this.nodeManager.nodes[msg.id].y=msg.y
