@@ -35,7 +35,7 @@ FastLED.addLeds<NEOPIXEL, D7>(leds1, NUM_LEDS1);
 
 void loop()
 {
-  int packetSize = Udp.parsePacket();
+  int packetSize = Udp.parsePacket(); 
   if (packetSize)
   {
     // receive incoming UDP packets
