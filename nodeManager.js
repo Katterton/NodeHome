@@ -1,216 +1,28 @@
-var Node = require("./Nodes.js")
-const UDPled = require("./UDPled.js")
-const Serialled = require("./SerialLed.js")
-const UDPledV2 = require("./UDPledV2.js")
+const Node = require("./Nodes.js");
 const fs = require('fs');
-const Timer = require("./Timer.js")
-const StaticLedColor = require("./StaticLedColor.js")
-const ColorRange = require("./ColorRange.js")
-const ColorRangeRandom = require("./ColorRangeRandom.js")
-const ColorRangeCrop = require("./ColorRangeCrop.js")
-const ColorRangeCycle = require("./ColorRangeCylce.js")
-const ColorRangeShift = require("./ColorRangeShift.js")
-const NODECONFIG = {    UDPLED : {
-        name: "UDPLed",
-        input: [
-            {name:"Color", type : "ChromaScale", id:0, var: "data"}
-        ],
-        output: [
-            //{name:"WIP Status", type : "number", id:0}
-        ],
-        args: [
-            {name:"IP",var: "ip", type : "String", value:"192.168.0.105"},
-            {name:"Port", var:"port", type : "number", value:4210},
-            {name:"numLeds", var: "num_leds", type : "number", value: 70}
-        ],
-        func : UDPled
-    },
-    UDPLEDV2 : {
-        name: "UDPLedV2",
-        input: [
-            {name:"Color", type : "ChromaScale", id:0, var: "data"}
-        ],
-        output: [
-            //{name:"WIP Status", type : "number", id:0}
-        ],
-        args: [
-            {name:"IP",var: "ip", type : "String", value:"192.168.0.105"},
-            {name:"Port", var:"port", type : "number", value:4210},
-            {name:"numLeds", var: "num_leds", type : "number", value: 70}
-        ],
-        func : UDPledV2
-    },
-    SERIALLED : {
-        name: "SerialLed",
-        input: [
-            {name:"Color", type : "ChromaScale", id:0, var: "data"}
-        ],
-        output: [
-            //{name:"WIP Status", type : "number", id:0}
-        ],
-        args: [
-            {name:"Baudrate",var: "baudRate", type : "number", value:250000},
-            {name:"Port", var:"port", type : "String", value:"/dev/ttyACM0"},
-            {name:"numLeds", var: "num_leds", type : "number", value: 70}
-        ],
-        func : Serialled
-    },
-    /*   BEAT : {
-          name: "Beat",
-          input: [
 
-          ],
-          output: [
-              {name:"beat", type : "number", id:0}
-              //{name:"WIP Status", type : "number", id:0}
-          ],
-          args: [
-              {name:"AudioDevice", var:"audio_device", type : "number", value:10},
-              {name:"Sensitivity", var: "sensitivity", type : "number", value: 10}
-          ],
-          func : ()=>(1)
-      },
-      BEATMIXER : {
-          name: "BeatMixer",
-          input: [
-              {name:"Color", type : "ChromaScale", id:0, var: "data"},
-              {name:"beat", type : "number", id:1, var: "beat"}
-          ],
-          output: [
-              {name:"Color", type : "ChromaScale", id:0}
-              //{name:"WIP Status", type : "number", id:0}
-          ],
-          args: [
-              {name:"Factor", var:"fac", type : "number", value:10},
+// Load node configuration from NodeConfig.json
+const loadNodeConfig = () => JSON.parse(fs.readFileSync("NodeConfig.json"));
+let NODECONFIG = loadNodeConfig();
 
-          ],
-          func : BeatMixer
-      },
-     AMBI : {
-          name: "Ambi",
-          input: [
+// Initialize Node classes
+for (let i in NODECONFIG) {
 
-          ],
-          output: [
-              {name:"Color", type : "ChromaScale", id:0}
-          ],
-          args: [
-              {name:"Screen",var: "display", type : "number", value:1},
-              {name:"FPS", var:"fps", type : "number", value:20},
-              {name:"numPanel", var: "num_panel", type : "number", value: 8}
-          ],
-          func : ""
-      },*/
-    STATICCOLOR : {
-        name: "StaticLedColor",
-        input: [
-
-        ],
-        output: [
-            {name:"Color", type : "ChromaScale", id:0}
-        ],
-        args: [
-            {name:"Red",var: "r", type : "number", value:1},
-            {name:"Green", var:"g", type : "number", value:20},
-            {name:"Blue", var: "b", type : "number", value: 8}
-        ],
-        func : StaticLedColor
-    },
-    COLORRANGE : {
-        name: "ColorRange",
-        input: [
-
-        ],
-        output: [
-            {name:"Color", type : "ChromaScale", id:0}
-        ],
-        args: [
-            {name:"RGBArray",var: "data", type : "ColorArray", value:"[[255,0,0],[0,255,0],[0,0,255]]"},
-
-        ],
-        func : ColorRange
-    },
-    COLORRANGERANDOM : {
-        name: "ColorRangeRandom",
-        input: [
-
-        ],
-        output: [
-            {name:"Color", type : "ChromaScale", id:0}
-        ],
-        args: [
-          
-
-        ],
-        func : ColorRangeRandom,
-    },
-    COLORRANGECYCLE : {
-        name: "ColorRangeCycle",
-        input: [
-            {name:"color", type : "ChromaScale", id:0, var: "data"}
-        ],
-        output: [
-            {name:"Color", type : "ChromaScale", id:0}
-        ],
-        args: [
-            {name:"Updates",var: "data", type : "number", value:10},
-            {name:"Invert",var: "invert", type : "boolean", value: false},
-
-        ],
-        func : ColorRangeCycle
-    },
-    COLORRANGESHIFT : {
-        name: "ColorRangeShift",
-        input: [
-            {name:"color", type : "ChromaScale", id:0, var: "data"}
-        ],
-        output: [
-            {name:"Color", type : "ChromaScale", id:0}
-        ],
-        args: [
-            {name:"Updates",var: "data", type : "number", value:1000},
-        ],
-        func : ColorRangeShift
-    },
-    COLORRANGECROP : {
-        name: "ColorRangeCrop",
-        input: [
-            {name:"color", type : "ChromaScale", id:0, var: "data"}
-        ],
-        output: [
-            {name:"Color", type : "ChromaScale", id:0}
-        ],
-        args: [
-            {name:"Width",var: "width", type : "number", value:100},
-            {name:"Offset",var: "offset", type : "number", value: 0},
-            {name:"Invert",var: "invert", type : "boolean", value: false},
-        ],
-        func : ColorRangeCrop
-    },
-    TIMER : {
-        name: "Timer",
-        input: [
-
-        ],
-        output: [
-            {name:"sstart", type : "boolean", id:0}
-        ],
-        args: [
-
-            {name:"Time",var: "time", type : "String", value: "11:00"},
-
-        ],
-        func : Timer
-    },
-
-
+    try {
+        NODECONFIG[i].func = require("./"+NODECONFIG[i].func+".js");
+    } catch (err) {
+        console.log("Couldn't initialize: " + i);
+    NODECONFIG[i] = undefined;
+}
 }
 
-const save = (data)=>{
-    fs.writeFile("save.json",JSON.stringify( data), (err) => {
+// Save data to save.json
+const save = (data) => {
+    fs.writeFile("save.json", JSON.stringify(data), (err) => {
         if (err)
             console.log(err);
-    })}
+    });
+}
 
 class NodeManager{
 
@@ -328,11 +140,8 @@ class NodeManager{
                 this.nodes[this.idc+conf.name].args.find((x)=>x.name===arg.name).update(arg.value)
             }
 
-
             this.socketApi.update()
             this.idc++
-
-
         }
         for(let key in data) {
             let conf = NODECONFIG[data[key].name.toUpperCase()]
@@ -354,9 +163,6 @@ class NodeManager{
     save(){
         save(this.serialize())
     }
-
-
-
 
 }
 module.exports=NodeManager
