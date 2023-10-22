@@ -1,7 +1,12 @@
-class InputNode //Class Name
+class $name$ //Class Name
+
+
 {
+    
+
     constructor(node) {
         this.node = node
+        $args$
         //Optional: Insert Code for Node Startup
     }
     update(){
@@ -13,4 +18,4 @@ class InputNode //Class Name
 }
 //or here
 
-module.exports=InputNode
+module.exports=$name$

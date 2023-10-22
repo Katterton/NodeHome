@@ -65,7 +65,9 @@ this.nodeManager.removeConnection(msg.con)
         socket.on("removeNode",(msg)=>{
             this.nodeManager.deleteNode(msg.node)
         })
-
+        socket.on("createNewNode",(msg)=>{
+           socket.emit("VSLink", this.nodeManager.createNode(msg))
+        })
     });
 
     this.addConnection=function(cons){
@@ -81,6 +83,7 @@ this.nodeManager.removeConnection(msg.con)
         io.emit("update", out)
         this.addConnection(this.nodeManager.connections)
     }
+
 
 
 

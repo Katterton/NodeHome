@@ -12,6 +12,12 @@
     border: 0.1px solid rgba(0, 255, 213, 0.6);
     color: #ffffff;
 }
+.nodes {
+    background: #171922;
+ 
+    border: 0.1px solid rgba(0, 255, 213, 0.6);
+    color: #ffffff;
+}
 #addMenu {
     background: #171922;
     position: absolute;
@@ -30,6 +36,13 @@ input{
     border: none !important;
     border-radius: 0 !important;
     color: #ffffff !important;}
+    select{
+    
+            background: #212630 !important;
+            border: none !important;
+            border-radius: 0 !important;
+            color: #ffffff !important;}
+    
 .input{
     margin-top: 10px;
     margin-bottom: 1000px;
