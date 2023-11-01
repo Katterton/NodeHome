@@ -54,9 +54,9 @@ input{
 }
 .output{
     margin-top: 10px;
-    position: absolute;
-    left: 238px;
-    width:50%;
+    position: relative;
+    left: 40px;
+    float: right;
 
 
 }
@@ -80,7 +80,7 @@ html{
 }
 .outText{
 
-    float: left;
+    float:left;
 }
 .delete{
     width: fit-content;

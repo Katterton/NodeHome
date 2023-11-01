@@ -1,7 +1,8 @@
-class OutputNode //Class Name
+class $name$ //Class Name
 {
     constructor(node) {
         this.node = node
+        $args$
         //Optional: Insert Code for Node Startup
     }
     start(){
@@ -14,5 +15,5 @@ class OutputNode //Class Name
     //you can add other functions here
 }
 //or here
-
-module.exports=OutputNode
+ 
+module.exports=$name$

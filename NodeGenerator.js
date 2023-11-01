@@ -1,5 +1,5 @@
 const fs = require("fs")
-const tempMap = {in:"node_template/InputNode.js", out: "./OutNode.js,", inout:"inOutNode.js"}
+const tempMap = {in:"node_template/InputNode.js", out:"node_template/OutputNode.js", inout:"node_template/inOutNode.js"}
 const nameMap ={name :"$name$", params:"$args$"}
 const params = ["name"]
 const getArgString = (config) =>([...(config.input?.length>0)? config.input.map(x=>"this."+x.var+"=this.node."+x.var+'\n'):  "",...config.output?.length>0?config.output.map(x=>"this."+x.var+"=this.node."+x.var+'\n'):"",...config.args.length>""?config.args.map(x=>"this."+x.var+"=this.node."+x.var+'\n'):""]).reduce((a,b)=>a+b)

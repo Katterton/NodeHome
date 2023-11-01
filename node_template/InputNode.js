@@ -16,6 +16,7 @@ class $name$ //Class Name
     //you can add other functions here
 
 }
+
 //or here
 
 module.exports=$name$
