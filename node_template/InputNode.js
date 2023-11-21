@@ -4,8 +4,8 @@ class $name$ //Class Name
 {
     
 
-    constructor(node) {
-        this.node = node
+    constructor(attr) {
+        this.attr = attr
         $args$
         //Optional: Insert Code for Node Startup
     }

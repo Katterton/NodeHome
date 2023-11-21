@@ -57,6 +57,9 @@ class NodeManager {
     }
 
     addConnection(con) {
+        console.log(con)
+        con.output=con.output.slice(-3, 0)==="out"?con.output.slice(0, -3): con.output;
+        con.input=con.input.slice(-2, 0)==="in"?con.input.slice(0, -2):con.input;
         this.connections.push(con);
         this.socketApi.addConnection(this.connections);
         let inp = {},
@@ -65,6 +68,7 @@ class NodeManager {
             if (this.nodes[key].id === parseInt(con.output.match(/\d+/g)[0])) {
                 outp = this.nodes[key].output.find((x) => (x.name === con.output.match(/[a-zA-Z]+/g)[0]));
             }
+            console.log(con)
             if (this.nodes[key].id === parseInt(con.input.match(/\d+/g)[0])) {
                 inp = this.nodes[key].input.find((x) => (x.name === con.input.match(/[a-zA-Z]+/g)[0]));
             }

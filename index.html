@@ -216,6 +216,7 @@
             addArgListener(document.getElementById(node.id))
             addStartListener(document.getElementById(node.id))
             addCloseListener(document.getElementById(node.id))
+            nodeReSize(node.id)
             let io = document.getElementById(node.id).children[0].children[document.getElementById(node.id).children[0].children.length - 1].children
             console.log(io)
 
@@ -404,13 +405,13 @@
 
     }
     function renderConnections(ele = "svg") {
+        console.log(document.getElementById(ele))
         let svg = document.getElementById(ele)
         svg.innerHTML = ""
         for (let con of connections) {
 
-            let out = document.getElementById(con.output)
-            let In = document.getElementById(con.input)
-            console.log(con.output)
+            let out = document.getElementById(con.output+"out")
+            let In = document.getElementById(con.input+"in")
             if (out !== null && In !== null) {
                 let outRect = out.getBoundingClientRect()
                 let outx = outRect.x
@@ -500,7 +501,10 @@
         }
     }
 
-
+function nodeReSize(ele){
+console.log(ele)
+   document.getElementById(ele).querySelector(".container").style.height= Math.max(document.getElementById(ele).querySelectorAll(".input").length,document.getElementById(ele).querySelectorAll(".output").length)*24+"px"
+}
 
 </script>
 

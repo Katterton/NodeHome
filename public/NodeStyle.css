@@ -3,6 +3,9 @@
     margin-left: 5%;
     width: 70%;
 }
+.col-sm{
+    height:0px;
+}
 .rt {
    margin-left: 100px;
 }
@@ -45,20 +48,25 @@ input{
     
 .input{
     margin-top: 10px;
-    margin-bottom: 1000px;
+    
     position: absolute;
     left: -10px;
     width:50%;
-
-
 }
+.outsvg{
+  float: right;
+}
+
 .output{
     margin-top: 10px;
-    position: relative;
-    left: 40px;
+
+    margin-left: 40%;
+   
+    width:100%;
+
+}
+.out{
     float: right;
-
-
 }
 body{
     background: #090a0e;
@@ -79,7 +87,8 @@ html{
     margin-top: -2px;
 }
 .outText{
-
+    width: 75%;
+text-align: right;
     float:left;
 }
 .delete{

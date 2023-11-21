@@ -25,16 +25,16 @@ function parseHTML(node){
         if (input !== undefined) {
             if (input.name !== "Start") {
                 out += ' <div class="input" style="margin-top: ' + (i * offset) + 'px">  <svg class="insvg" id="svg' + node.id + input.name + '" width="22" height="22">'
-                out += "<circle class='in' id='" + node.id + input.name + "'  cx='10'  cy='10' r='6' stroke='black'  fill='white'></svg><p class='intext'>" + input.name + "</p></div>"
+                out += "<circle class='in' id='" + node.id + input.name + "in'  cx='10'  cy='10' r='6' stroke='black'  fill='white'></svg><p class='intext'>" + input.name + "</p></div>"
             } else {
                 out += ' <div class="input" style="margin-top: ' + (i * offset) + 'px">  <svg class="insvg" id="svg' + node.id + input.name + '" width="22" height="22">'
-                out += "<circle class='in' id='" + node.id + input.name + "'  cx='10'  cy='10' r='6' stroke='black'  fill='white'></svg><button type='button' id='" + node.id + node.name + "start' class='btn btn-outline-success st " + (node.started ? "btn-outline-success" : "btn-outline-danger") + "'>" + input.name + "</button></div>"
+                out += "<circle class='in' id='" + node.id + input.name + "in'  cx='10'  cy='10' r='6' stroke='black'  fill='white'></svg><button type='button' id='" + node.id + node.name + "start' class='btn btn-outline-success st " + (node.started ? "btn-outline-success" : "btn-outline-danger") + "'>" + input.name + "</button></div>"
             }
         }
         out += ' </div><div class="col-sm">'
         if (output !== undefined) {
             out += '  <div class="output" style="margin-top: ' + (i * offset) + 'px"><p class="outText">' + output.name + '</p><svg class="outsvg" id="svg' + node.id + output.name + '" width="22" height="22">'
-            out += "<circle class='out' id='" + node.id + output.name + "'  cx='10'  cy='10' r='6' stroke='black'  fill='white'></svg></div>"
+            out += "<circle class='out' id='" + node.id + output.name + "out'  cx='10'  cy='10' r='6' stroke='black'  fill='white'></svg></div>"
         }
         out += ' </div></div>';
     }

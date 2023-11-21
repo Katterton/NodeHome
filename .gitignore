@@ -1,0 +1,7 @@
+node_modules/
+save.json
+backup
+package-lock.json
+package.json
+.gitignore
+CustomNodes

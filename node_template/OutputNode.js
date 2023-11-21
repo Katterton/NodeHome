@@ -1,13 +1,14 @@
 class $name$ //Class Name
 {
-    constructor(node) {
-        this.node = node
+    constructor(attr, send) {
+        this.send=send
+        this.attr = attr
         $args$
         //Optional: Insert Code for Node Startup
     }
     start(){
         //Required: Insert start Code
-            this.node.send({}) //required: send data to next node
+            this.send({}) //required: send data to next node
     }
     stop(){
         //Required: Insert stop Code

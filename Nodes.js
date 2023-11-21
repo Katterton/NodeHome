@@ -7,6 +7,7 @@ var idx = 0;
 class Nodes {
     x = 0
     y = 0
+    attributes = {}
     input = []
     output = []
     args = []
@@ -24,6 +25,7 @@ class Nodes {
         }
         for (let i of input) {
             this.input.push(new Input(i, this))
+      
         }
         if (this.input.length === 0) {
             this.input.push(new Input({name: "Start", type: "boolean", id: 0, var: "sstart"}, this))
@@ -39,15 +41,23 @@ class Nodes {
             this.args.push(new Arguement(i, this))
 
         }
+      
+       
 
-        this.func = new func(this)
-        if (this.output.length !== 0) {
+       let me=this
+        this.func = new func(this.attributes, function(data, port=0){
+      
+            me.output[port].update(data)
+                })
+      
 
-        this.send= function(data, port =0){
-        this.output[port].update(data)
-            }
-    }
+
+    
+    
 }
+send= function(data, port=0){
+    this.output[port].update(data)
+        }
 rename(name){  this.name=name}
 
 
@@ -123,7 +133,7 @@ this.node=node
     }
     update(data){
         this.value = data
-        this.node[this.var]=data
+        this.node.attributes[this.var]=data
         if(this.node.func.updateArgs!==undefined){
             this.node.func.updateArgs(this.var)
         }
@@ -181,7 +191,6 @@ class Input extends IO {
 
 
     update(data) {
-
         if(typeof this.node.start==="function") {
             if (this.name === "Start") {
                 if (data) {
@@ -195,9 +204,10 @@ class Input extends IO {
             }
         }
         this.data = data
-        this.node[this.var]=data
+        this.node.attributes[this.var]=data
+     
         if(this.node.func.update!==undefined) {
-            this.node.func.update(this.node)
+            this.node.func.update(this.node.attributes)
         }
 
     }
